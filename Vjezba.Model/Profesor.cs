@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vjezba.Model
 {
-    public enum ZvanjeProf
+    public enum Zvanje
     {
         Asistent,
         Predavac,
@@ -21,7 +21,7 @@ namespace Vjezba.Model
 
         public DateTime DatumIzbora { get; set; }
 
-        public ZvanjeProf Zvanje { get; set; }
+        public Zvanje Zvanje { get; set; }
 
         public int KolikoDoReizbora()
         {
