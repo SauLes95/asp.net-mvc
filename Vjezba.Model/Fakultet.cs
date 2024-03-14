@@ -161,5 +161,19 @@ namespace Vjezba.Model
                 return tmpProfs.OrderByDescending(p => p.Prezime).ThenByDescending(p => p.Ime);
             }
         }
+
+        public int KolikoProfesoraUZvanju(Zvanje zvanje)
+        {
+            List<Profesor> tmpProfs = new List<Profesor>();
+            foreach (var item in listOsobe)
+            {
+                if (item is Profesor p)
+                {
+                    tmpProfs.Add(p);
+                }
+            }
+
+            return tmpProfs.Count(p => p.Zvanje == zvanje);
+        }
     }
 }
