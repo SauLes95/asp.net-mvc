@@ -10,8 +10,8 @@
     <Compile Remove="Zadatak_01.cs" />
     <Compile Remove="Zadatak_02.cs" />
     <Compile Remove="Zadatak_03.cs" />
+    <Compile Remove="Zadatak_04.cs" />
     <Compile Remove="Zadatak_05.cs" />
-    <Compile Remove="Zadatak_06.cs" />
     <Compile Remove="Zadatak_07.cs" />
     <Compile Remove="Zadatak_08.cs" />
     <Compile Remove="Zadatak_09.cs" />
@@ -25,8 +25,8 @@
     <None Include="Zadatak_01.cs" />
     <None Include="Zadatak_02.cs" />
     <None Include="Zadatak_03.cs" />
+    <None Include="Zadatak_04.cs" />
     <None Include="Zadatak_05.cs" />
-    <None Include="Zadatak_06.cs" />
     <None Include="Zadatak_07.cs" />
     <None Include="Zadatak_08.cs" />
     <None Include="Zadatak_09.cs" />

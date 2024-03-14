@@ -112,5 +112,19 @@ namespace Vjezba.Model
         public List <Student> DohvatiStudente91List() {
             return DohvatiStudente91().ToList();
         }
+
+        public Student NajboljiProsjek(int god)
+        {
+            List<Student> tmpStuds = new List<Student>();
+            foreach (var item in listOsobe)
+            {
+                if (item is Student s)
+                {
+                    tmpStuds.Add(s);
+                }
+            }
+
+            return tmpStuds.Where(s => s.DatumRodjenja.Year == god).OrderByDescending(s => s.Prosjek).FirstOrDefault();
+        }
     }
 }
