@@ -127,7 +127,7 @@ namespace Vjezba.Model
             return tmpStuds.Where(s => s.DatumRodjenja.Year == god).OrderByDescending(s => s.Prosjek).FirstOrDefault();
         }
 
-        public List<Student> StudentiGodinaOrdered(int god)
+        public IEnumerable<Student> StudentiGodinaOrdered(int god)
         {
             List<Student> tmpStuds = new List<Student>();
             foreach (var item in listOsobe)
@@ -138,7 +138,28 @@ namespace Vjezba.Model
                 }
             }
 
-            return tmpStuds.Where(s => s.DatumRodjenja.Year == god).OrderByDescending(s => s.Prosjek).ToList();
+            return tmpStuds.Where(s => s.DatumRodjenja.Year == god).OrderByDescending(s => s.Prosjek);
+        }
+
+        public IEnumerable<Profesor> SviProfesori(bool asc)
+        {
+            List<Profesor> tmpProfs = new List<Profesor>();
+            foreach (var item in listOsobe)
+            {
+                if (item is Profesor p)
+                {
+                    tmpProfs.Add(p);
+                }
+            }
+
+            if (asc)
+            {
+                return tmpProfs.OrderBy(p => p.Prezime).ThenBy(p => p.Ime);
+            }
+            else
+            {
+                return tmpProfs.OrderByDescending(p => p.Prezime).ThenByDescending(p => p.Ime);
+            }
         }
     }
 }
