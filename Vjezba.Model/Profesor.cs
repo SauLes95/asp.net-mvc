@@ -15,13 +15,17 @@ namespace Vjezba.Model
     }
     public class Profesor : Osoba
     {
-        public Profesor() { }
+        public Profesor() {
+            Predmeti = new List<Predmet>();
+        }
 
         public string Odjel { get; set; }
 
         public DateTime DatumIzbora { get; set; }
 
         public Zvanje Zvanje { get; set; }
+
+        public List<Predmet> Predmeti { get; set; }
 
         public int KolikoDoReizbora()
         {
