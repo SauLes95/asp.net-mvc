@@ -126,5 +126,19 @@ namespace Vjezba.Model
 
             return tmpStuds.Where(s => s.DatumRodjenja.Year == god).OrderByDescending(s => s.Prosjek).FirstOrDefault();
         }
+
+        public List<Student> StudentiGodinaOrdered(int god)
+        {
+            List<Student> tmpStuds = new List<Student>();
+            foreach (var item in listOsobe)
+            {
+                if (item is Student s)
+                {
+                    tmpStuds.Add(s);
+                }
+            }
+
+            return tmpStuds.Where(s => s.DatumRodjenja.Year == god).OrderByDescending(s => s.Prosjek).ToList();
+        }
     }
 }
