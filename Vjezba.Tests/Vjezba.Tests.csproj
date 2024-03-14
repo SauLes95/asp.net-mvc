@@ -16,7 +16,7 @@
     <Compile Remove="Zadatak_07.cs" />
     <Compile Remove="Zadatak_08.cs" />
     <Compile Remove="Zadatak_09.cs" />
-    <Compile Remove="Zadatak_11.cs" />
+    <Compile Remove="Zadatak_10.cs" />
     <Compile Remove="Zadatak_12.cs" />
     <Compile Remove="Zadatak_13.cs" />
   </ItemGroup>
@@ -31,7 +31,7 @@
     <None Include="Zadatak_07.cs" />
     <None Include="Zadatak_08.cs" />
     <None Include="Zadatak_09.cs" />
-    <None Include="Zadatak_11.cs" />
+    <None Include="Zadatak_10.cs" />
     <None Include="Zadatak_12.cs" />
     <None Include="Zadatak_13.cs" />
   </ItemGroup>
