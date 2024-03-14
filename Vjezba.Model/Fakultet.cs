@@ -189,5 +189,19 @@ namespace Vjezba.Model
 
             return tmpProfs.Where(p => p.Predmeti.Count() < x  && (p.Zvanje.Equals(Zvanje.Predavac) || p.Zvanje.Equals(Zvanje.VisiPredavac)));
         }
+
+        public IEnumerable<Profesor> AktivniAsistenti(int x, int minEcts)
+        {
+            List<Profesor> tmpProfs = new List<Profesor>();
+            foreach (var item in listOsobe)
+            {
+                if (item is Profesor p)
+                {
+                    tmpProfs.Add(p);
+                }
+            }
+
+            return tmpProfs.Where(p => p.Predmeti.Count() > x && p.Predmeti.Any(pr => pr.ECTS >= minEcts));
+        }
     }
 }
