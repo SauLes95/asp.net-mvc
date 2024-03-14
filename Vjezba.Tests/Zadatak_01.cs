@@ -27,7 +27,8 @@ namespace Vjezba.Test
         public void TestOsobaInvalidOIB()
         {
             Osoba o = new Osoba();
-            Assert.Throws<InvalidOperationException>(() => {
+            Assert.Throws<InvalidOperationException>(() =>
+            {
                 o.OIB = "013822039";
             });
         }

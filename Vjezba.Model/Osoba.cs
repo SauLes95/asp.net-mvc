@@ -25,6 +25,10 @@ namespace Vjezba.Model
                 if(value.Length != 11 || !Regex.IsMatch(value, number)){
                     throw new InvalidOperationException("OIB mora sadrzavati 11 brojeva");
                 }
+                else
+                {
+                    this.oib = value;
+                }
             }
         }
 
@@ -36,6 +40,10 @@ namespace Vjezba.Model
                 if (value.Length != 13 || !Regex.IsMatch(value, number)){
                     throw new InvalidOperationException("JMBG mora sadrzavati 11 brojeva");
                 }
+                else
+                {
+                    this.jmbg = value;
+                }
             }
         }
 
@@ -43,12 +51,11 @@ namespace Vjezba.Model
         {
             get
             {
-                DateTime tmpDateTime = new DateTime();
-                tmpDateTime.AddDays(Convert.ToDouble(jmbg.Substring(0, 2)));
-                tmpDateTime.AddMonths(Convert.ToInt32(jmbg.Substring(2, 2)));
-                tmpDateTime.AddYears(1000 + Convert.ToInt32(jmbg.Substring(4, 3)));
+                int tmpDay = Convert.ToInt32(jmbg.Substring(0, 2));
+                int tmpMonth = Convert.ToInt32(jmbg.Substring(2, 2));
+                int tmpYear = 1000 + Convert.ToInt32(jmbg.Substring(4, 3));
 
-                return tmpDateTime;
+                return new DateTime(tmpYear,tmpMonth,tmpDay);
             }
         }
 

@@ -23,6 +23,10 @@ namespace Vjezba.Model
                 {
                     throw new InvalidOperationException("JMBAG mora sadrzavati 10 brojeva");
                 }
+                else
+                {
+                    this.jmbag = value;
+                }
             }
         }
 

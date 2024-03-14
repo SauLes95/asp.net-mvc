@@ -44,11 +44,9 @@ namespace Vjezba.Model
         {
             foreach(var item in listOsobe)
             {
-                if(item is Student tmpStudent) {
-                    if(tmpStudent.jmbag == JMBAG)
-                    {
-                        return tmpStudent;
-                    }
+                if(item is Student tmpStudent) if (tmpStudent.jmbag == JMBAG) { 
+                    
+                    return tmpStudent;
                 }  
             }
 
