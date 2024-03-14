@@ -108,5 +108,9 @@ namespace Vjezba.Model
 
             return tmpStuds.Where(s => !s.JMBAG.StartsWith("0246") && s.Prezime.StartsWith('D'));
         }
+
+        public List <Student> DohvatiStudente91List() {
+            return DohvatiStudente91().ToList();
+        }
     }
 }
