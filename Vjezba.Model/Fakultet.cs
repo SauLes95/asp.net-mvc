@@ -93,5 +93,20 @@ namespace Vjezba.Model
 
             return tmpStuds;
         }
+
+
+        public IEnumerable<Student> StudentiNeTvzD()
+        {
+            List<Student> tmpStuds = new List<Student>();
+            foreach (var item in listOsobe)
+            {
+                if (item is Student s)
+                {
+                    tmpStuds.Add(s);
+                }
+            }
+
+            return tmpStuds.Where(s => !s.JMBAG.StartsWith("0246") && s.Prezime.StartsWith('D'));
+        }
     }
 }
