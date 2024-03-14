@@ -63,11 +63,8 @@ namespace Vjezba.Model
                     tmpProfs.Add(p);
                 }
             }
-            var profsSortedByDate = tmpProfs.OrderBy(p => p.DatumIzbora.Year)
-                .ThenBy(p => p.DatumIzbora.Month)
-                .ThenBy(p => p.DatumIzbora.Date);
 
-            return profsSortedByDate;
+            return tmpProfs.OrderBy(p => p.DatumIzbora); ;
         }
     }
 }
