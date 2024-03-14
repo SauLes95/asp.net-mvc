@@ -52,5 +52,22 @@ namespace Vjezba.Model
 
             return null;
         }
+
+        public IEnumerable<Profesor> DohvatiProfesore()
+        {
+            List <Profesor> tmpProfs = new List<Profesor>();
+            foreach (var item in listOsobe)
+            {
+                if(item is Profesor p)
+                {
+                    tmpProfs.Add(p);
+                }
+            }
+            var profsSortedByDate = tmpProfs.OrderBy(p => p.DatumIzbora.Year)
+                .ThenBy(p => p.DatumIzbora.Month)
+                .ThenBy(p => p.DatumIzbora.Date);
+
+            return profsSortedByDate;
+        }
     }
 }
