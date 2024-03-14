@@ -64,7 +64,34 @@ namespace Vjezba.Model
                 }
             }
 
-            return tmpProfs.OrderBy(p => p.DatumIzbora); ;
+            return tmpProfs.OrderBy(p => p.DatumIzbora); 
+        }
+
+        public IEnumerable<Student> DohvatiStudente91()
+        {
+            List <Student> tmpStuds = new List<Student>();
+            foreach (var item in listOsobe)
+            {
+                if (item is Student s) { 
+                tmpStuds.Add(s);
+                }
+            }
+
+            return tmpStuds.Where(s => s.DatumRodjenja.Year > 1991);
+        }
+
+        public IEnumerable <Student> DohvatiStudente91NoLinq()
+        {
+            List <Student> tmpStuds = new List<Student>();
+            foreach (var item in listOsobe)
+            {
+                if (item is Student s) if(item.DatumRodjenja.Year >1991)
+                {
+                    tmpStuds.Add(s);
+                }
+            }
+
+            return tmpStuds;
         }
     }
 }
