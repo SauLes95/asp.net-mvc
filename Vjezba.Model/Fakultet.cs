@@ -203,5 +203,18 @@ namespace Vjezba.Model
 
             return tmpProfs.Where(p => p.Predmeti.Count() > x && p.Predmeti.Any(pr => pr.ECTS >= minEcts));
         }
+
+        public void IzmjeniProfesore(Action<Profesor> action)
+        {
+            List<Profesor> tmpProfs = new List<Profesor>();
+            foreach (var item in listOsobe)
+            {
+                if (item is Profesor p)
+                {
+                    action(p);
+                    tmpProfs.Add(p);
+                }
+            }
+        }
     }
 }
