@@ -22,11 +22,29 @@ namespace Vjezba.Main
             Thread.Sleep(1500);
             Console.WriteLine($"Sleeping T2 completed");
         });
-
-        public static void Main(string[] args)
+        static async Task SleepF2()
         {
-            Task.WaitAll(t1, t2);
+            Console.WriteLine($"Sleeping F2 started");
+            await Task.Delay(1000);
+            Console.WriteLine($"Sleeping F2 completed");
+        }
+        static async Task SleepF1()
+        {
+            Console.WriteLine($"Sleeping F1 started");
+            await SleepF2();
+            await Task.Delay(1000);
+            Console.WriteLine($"Sleeping F1 completed");
+        }
+
+        
+
+        static void Main(string[] args)
+        {
+            //Task.WaitAll(t1, t2);
             //Task.WaitAny(t1, t2);   
+
+            //t1 = SleepF1();
+            //Task.WaitAll(t1, t2);
         }
         
     }
