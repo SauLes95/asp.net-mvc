@@ -43,8 +43,8 @@ namespace Vjezba.Main
             //Task.WaitAll(t1, t2);
             //Task.WaitAny(t1, t2);   
 
-            //t1 = SleepF1();
-            //Task.WaitAll(t1, t2);
+            //Task t3 = SleepF1();
+            //t3.Wait();
         }
         
     }
