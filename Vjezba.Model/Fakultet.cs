@@ -13,7 +13,22 @@ namespace Vjezba.Model
         public Fakultet() { 
             listOsobe = new List<Osoba>();
         }
-        
+
+        private IEnumerable<Osoba> FilterOsobeByType(List<Osoba> listOsobe, Type t)
+        {
+            List<Osoba> filtriraneOsobe = new List<Osoba>();
+
+            foreach (var osoba in listOsobe)
+            {
+                if ((t == typeof(Profesor) && osoba is Profesor) || (t == typeof(Student) && osoba is Student))
+                {
+                    filtriraneOsobe.Add(osoba);
+                }
+            }
+
+            return filtriraneOsobe;
+        }
+
         public int KolikoProfesora()
         {
             return FilterOsobeByType(listOsobe,typeof(Profesor)).Count();
@@ -122,21 +137,6 @@ namespace Vjezba.Model
                     tmpProfs.Add(p);
                 }
             }
-        }
-
-        private IEnumerable<Osoba> FilterOsobeByType(List <Osoba> listOsobe, Type t)
-        {
-            List<Osoba> filtriraneOsobe = new List<Osoba>();
-
-            foreach (var osoba in listOsobe)
-            {
-                if ((t == typeof(Profesor) && osoba is Profesor) || (t == typeof(Student) && osoba is Student))
-                {
-                    filtriraneOsobe.Add(osoba);
-                }
-            }
-
-            return filtriraneOsobe;
         }
     }
 }
