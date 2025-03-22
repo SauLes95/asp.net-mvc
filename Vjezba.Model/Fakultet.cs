@@ -9,7 +9,8 @@ namespace Vjezba.Model
 	public class Fakultet
 	{
 
-		private List<Osoba> Osobe;
+		public List<Osoba> Osobe { get; set; }
+
 		public Fakultet()
 		{
 			Osobe = new List<Osoba>();
@@ -50,7 +51,7 @@ namespace Vjezba.Model
 				if (osoba is Student)
 				{
 					Student tmpStudent = (Student)osoba;
-					if (tmpStudent.GetJMBAG() == _JMBAG)
+					if (tmpStudent.JMBAG == _JMBAG)
 					{
 						return tmpStudent;
 					}

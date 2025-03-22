@@ -8,126 +8,61 @@ namespace Vjezba.Model
 {
 	public class Osoba
 	{
-		private string Ime, Prezime, OIB, JMBG;
+		private string _ime, _prezime, _OIB, _JMBG;
+
+		public string Ime
+		{
+			get { return this._ime; }
+			set { this._ime = value; }
+		}
+
+		public string Prezime
+		{
+			get { return this._prezime; }
+			set { this._prezime = value; }
+		}
+
+		public string OIB
+		{
+			get { return this._OIB; }
+			set 
+			{
+				if (value.Length != 11 || !IsNumeric(value))
+					throw new InvalidOperationException("Invalid OIB");
+
+				this._OIB = value; 
+			}
+		}
+
+		public string JMBG
+		{
+			get { return this._JMBG; }
+			set 
+			{
+				if (value.Length != 13 || !IsNumeric(value))
+					throw new InvalidOperationException("Invalid JMBG");
+				this._JMBG = value; 
+			}
+		}
+
 		public Osoba()
 		{
 		}
 
-		public Osoba(string _ime, string _prezime, string _OIB, string _JMBG)
+
+		public DateTime DatumRodjenja
 		{
-			this.Ime = _ime;
-			this.Prezime = _prezime;
+			get
+			{
+				int d = int.Parse(JMBG.Substring(0, 2));
+				int m = int.Parse(JMBG.Substring(2, 2));
+				int y = 1000 + int.Parse(JMBG.Substring(4, 3));
 
-			try
-			{
-				if (_OIB.Length != 11 || !IsNumeric(_OIB))
-				{
-					throw new InvalidOperationException("Invalid OIB");
-				}
-				else
-				{
-					this.OIB = _OIB;
-				}
-			}
-			catch (InvalidOperationException ex)
-			{
-				Console.WriteLine(ex.Message);
-			}
-
-			try
-			{
-				if (_JMBG.Length != 13 || !IsNumeric(_JMBG))
-				{
-					throw new InvalidOperationException("Invalid JMBG");
-				}
-				else
-				{
-					this.JMBG = _JMBG;
-				}
-			}
-			catch (InvalidOperationException ex)
-			{
-				Console.WriteLine(ex.Message);
+				return new DateTime(y, m, d);
 			}
 		}
 
-		public void SetIme(string _ime)
-		{
-			this.Ime = _ime;
-		}
 
-		public string GetIme()
-		{
-			return this.Ime;
-		}
-
-		public void SetPrezime(string _prezime)
-		{
-			this.Prezime = _prezime;
-		}
-		public string GetPrezime()
-		{
-			return this.Prezime;
-		}
-
-		public void SetOIB(string _OIB)
-		{
-			try
-			{
-				if (_OIB.Length != 11 || !IsNumeric(_OIB))
-				{
-					throw new InvalidOperationException("Invalid OIB");
-				}
-				else
-				{
-					this.OIB = _OIB;
-				}
-			}
-			catch (InvalidOperationException ex)
-			{
-				Console.WriteLine(ex.Message);
-			}
-		}
-
-		public string GetOIB()
-		{
-			return this.OIB;
-		}
-
-		public void SetJMBG(string _JMBG)
-		{
-			try
-			{
-				if (_JMBG.Length != 13 || !IsNumeric(_JMBG))
-				{
-					throw new InvalidOperationException("Invalid JMBG");
-				}
-				else
-				{
-					this.JMBG = _JMBG;
-				}
-			}
-			catch (InvalidOperationException ex)
-			{
-				Console.WriteLine(ex.Message);
-			}
-		}
-
-		public string GetJMBG()
-		{
-			return this.JMBG;
-		}
-
-		public DateTime DatumRodjenja()
-		{
-			DateTime datumRodjenja = new DateTime();
-
-			datumRodjenja.AddDays(int.Parse(this.JMBG.Substring(0, 2)));
-			datumRodjenja.AddMonths(int.Parse(this.JMBG.Substring(2, 2)));
-			datumRodjenja.AddYears(1000 + int.Parse(this.JMBG.Substring(4, 3)));
-
-			return datumRodjenja;
-		}
 		bool IsNumeric(string s)
 		{
 			for (int i = 0; i < s.Length; i++)

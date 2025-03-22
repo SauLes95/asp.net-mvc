@@ -8,85 +8,45 @@ namespace Vjezba.Model
 {
 	public class Student : Osoba
 	{
-		private string JMBAG;
-		private int BrPolozeno, ECTS;
-		private decimal Prosjek;
+		private string _JMBAG;
+		private int _brPolozeno;
+		private decimal _prosjek;
+
+
+		public string JMBAG
+		{
+			get { return this._JMBAG; }
+			set
+			{
+
+				if (value.Length != 10 || !IsNumeric(value))
+					throw new InvalidOperationException("Invalid JMBAG");
+
+				this._JMBAG = value;
+			}
+		}
+
+		public int BrPolozeno
+		{
+			get { return this._brPolozeno; }
+			set { this._brPolozeno = value; }
+		}
+
+		private int _ECTS;
+		public int ECTS
+		{
+			get { return this._ECTS; }
+			set { this._ECTS = value; }
+		}
+
+		public decimal Prosjek
+		{
+			get { return this._prosjek; }
+			set { this._prosjek = value; }
+		}
+
 		public Student()
 		{
-		}
-
-		public Student(string _ime, string _prezime, string _OIB, string _JMBG, string _JMBAG, int _brPolozeno, int _ECTS)
-			: base(_ime, _prezime, _OIB, _JMBG)
-		{
-			try
-			{
-				if (_OIB.Length != 10 || !IsNumeric(_JMBAG))
-				{
-					throw new InvalidOperationException("Invalid JMBAG");
-				}
-				else
-				{
-					this.JMBAG = _JMBAG;
-				}
-			}
-			catch (InvalidOperationException ex)
-			{
-				Console.WriteLine(ex.Message);
-			}
-
-			this.BrPolozeno = _brPolozeno;
-			this.ECTS = _ECTS;
-			this.Prosjek = _brPolozeno / _ECTS;
-		}
-
-		public void SetJMBAG(string _JMBAG)
-		{
-			try
-			{
-				if (_JMBAG.Length != 10 || !IsNumeric(_JMBAG))
-				{
-					throw new InvalidOperationException("Invalid JMBAG");
-				}
-				else
-				{
-					this.JMBAG = _JMBAG;
-				}
-			}
-			catch (InvalidOperationException ex)
-			{
-				Console.WriteLine(ex.Message);
-			}
-		}
-
-		public string GetJMBAG()
-		{
-			return this.JMBAG;
-		}
-
-		public void SetBrPolozeno(int _brPolozeno)
-		{
-			this.BrPolozeno = _brPolozeno;
-		}
-
-		public int GetBrPolozeno()
-		{
-			return this.BrPolozeno;
-
-		}
-
-		public void SetECTS(int _ECTS)
-		{
-			this.ECTS = _ECTS;
-		}
-
-		public int GetECTS()
-		{
-			return this.ECTS;
-		}
-
-		public decimal GetProsjek()
-		{
-			return this.Prosjek;
 		}
 
 		bool IsNumeric(string s)
