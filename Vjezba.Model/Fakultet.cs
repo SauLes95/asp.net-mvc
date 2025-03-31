@@ -105,5 +105,12 @@ namespace Vjezba.Model
 			return Osobe.OfType<Student>().Where(t => t.DatumRodjenja.Year > 1991).ToList();
 		}
 
+		public Student? NajboljiProsjek(int god)
+		{
+			return Osobe.OfType<Student>()
+				.Where(s => s.DatumRodjenja.Year == god)
+				.OrderByDescending(s => s.Prosjek)
+				.FirstOrDefault();
+		}
 	}
 }

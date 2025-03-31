@@ -2,12 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-
+	<Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Zadatak_06.cs" />
     <Compile Remove="Zadatak_07.cs" />
     <Compile Remove="Zadatak_08.cs" />
     <Compile Remove="Zadatak_09.cs" />
