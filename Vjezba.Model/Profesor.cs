@@ -20,6 +20,7 @@ namespace Vjezba.Model
 		private string _odjel;
 		private DateTime _datumIzbora;
 		private Zvanje _zvanje;
+		private List<Predmet> _predmeti;
 
 		public string Odjel
 		{
@@ -38,9 +39,15 @@ namespace Vjezba.Model
 			set { this._zvanje = value; }
 		}
 
+		public List<Predmet> Predmeti
+		{
+			get { return this._predmeti; }
+			set { this._predmeti = value; }
+		}
 
 		public Profesor()
 		{
+			Predmeti = new List<Predmet>();
 		}
 
 

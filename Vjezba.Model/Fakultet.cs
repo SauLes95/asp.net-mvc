@@ -136,5 +136,13 @@ namespace Vjezba.Model
 					.OrderByDescending(p => p.Ime);
 			}
 		}
+
+		public int KolikoProfesoraUZvanju(Zvanje zvanje)
+		{
+			return Osobe.OfType<Profesor>()
+				.Where(p => p.Zvanje == zvanje)
+				.Count();
+		}
+
 	}
 }
