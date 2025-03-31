@@ -60,5 +60,50 @@ namespace Vjezba.Model
 			return null;
 		}
 
+		public IEnumerable<Profesor> DohvatiProfesore()
+		{
+			List<Profesor> tmpProfesori = new List<Profesor>();
+			foreach (Osoba osoba in Osobe)
+			{
+				if (osoba is Profesor)
+				{
+					tmpProfesori.Add((Profesor)osoba);
+				}
+			}
+
+
+			return tmpProfesori.OrderBy(tmpProfesori => tmpProfesori.DatumIzbora);
+		}
+
+		public IEnumerable<Student> DohvatiStudente91()
+		{
+			return Osobe.OfType<Student>().Where(t => t.DatumRodjenja.Year > 1991);
+		}
+
+		public IEnumerable<Student> DohvatiStudente91NoLinq()
+		{
+			List<Student> tmpStudenti = new List<Student>();
+			foreach (Osoba osoba in Osobe)
+			{
+				if (osoba is Student && osoba.DatumRodjenja.Year > 1991)
+				{
+					tmpStudenti.Add((Student)osoba);
+				}
+			}
+			return tmpStudenti;
+		}
+
+		public IEnumerable<Student> StudentiNeTvzD()
+		{
+			return Osobe.OfType<Student>()
+				.Where(s => s.Prezime.StartsWith('D'))
+				.Where(s => !s.JMBAG.StartsWith("0246"));
+		}
+
+		public IEnumerable<Student> DohvatiStudente91List()
+		{
+			return Osobe.OfType<Student>().Where(t => t.DatumRodjenja.Year > 1991).ToList();
+		}
+
 	}
 }
