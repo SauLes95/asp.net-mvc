@@ -77,7 +77,8 @@ namespace Vjezba.Model
 
 		public IEnumerable<Student> DohvatiStudente91()
 		{
-			return Osobe.OfType<Student>().Where(t => t.DatumRodjenja.Year > 1991);
+			return Osobe.OfType<Student>()
+				.Where(t => t.DatumRodjenja.Year > 1991);
 		}
 
 		public IEnumerable<Student> DohvatiStudente91NoLinq()
@@ -118,6 +119,22 @@ namespace Vjezba.Model
 			return Osobe.OfType<Student>()
 				.Where(s => s.DatumRodjenja.Year == god)
 				.OrderByDescending(s => s.Prosjek);
+		}
+
+		public IEnumerable<Profesor> SviProfesori(bool asc)
+		{
+			if (asc)
+			{
+				return Osobe.OfType<Profesor>()
+					.OrderBy(p => p.Ime)
+					.OrderBy(p => p.Prezime);
+			}
+			else
+			{
+				return Osobe.OfType<Profesor>()
+					.OrderByDescending(p => p.Prezime)
+					.OrderByDescending(p => p.Ime);
+			}
 		}
 	}
 }
