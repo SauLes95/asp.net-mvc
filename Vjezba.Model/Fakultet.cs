@@ -102,7 +102,7 @@ namespace Vjezba.Model
 
 		public IEnumerable<Student> DohvatiStudente91List()
 		{
-			return Osobe.OfType<Student>().Where(t => t.DatumRodjenja.Year > 1991).ToList();
+			return Osobe.OfType<Student>().Where(s => s.DatumRodjenja.Year > 1991).ToList();
 		}
 
 		public Student? NajboljiProsjek(int god)
@@ -111,6 +111,13 @@ namespace Vjezba.Model
 				.Where(s => s.DatumRodjenja.Year == god)
 				.OrderByDescending(s => s.Prosjek)
 				.FirstOrDefault();
+		}
+
+		public IEnumerable<Student> StudentiGodinaOrdered(int god)
+		{
+			return Osobe.OfType<Student>()
+				.Where(s => s.DatumRodjenja.Year == god)
+				.OrderByDescending(s => s.Prosjek);
 		}
 	}
 }
