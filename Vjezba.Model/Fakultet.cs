@@ -103,7 +103,8 @@ namespace Vjezba.Model
 
 		public IEnumerable<Student> DohvatiStudente91List()
 		{
-			return Osobe.OfType<Student>().Where(s => s.DatumRodjenja.Year > 1991).ToList();
+			return Osobe.OfType<Student>()
+				.Where(s => s.DatumRodjenja.Year > 1991);
 		}
 
 		public Student? NajboljiProsjek(int god)
@@ -144,5 +145,18 @@ namespace Vjezba.Model
 				.Count();
 		}
 
+		public IEnumerable<Profesor> NeaktivniProfesori(int x)
+		{
+			return Osobe.OfType<Profesor>()
+				.Where(p => p.Zvanje==Zvanje.Predavac || p.Zvanje == Zvanje.VisiPredavac)
+				.Where(p => p.Predmeti.Count < x);
+		}
+
+		public IEnumerable<Profesor> AktivniAsistenti(int x, int minEcts)
+		{
+			return Osobe.OfType<Profesor>()
+				.Where(p => p.Zvanje == Zvanje.Asistent)
+				.Where(p => p.Predmeti.Count(pr => pr.ECTS >= minEcts) > x);
+		}
 	}
 }
