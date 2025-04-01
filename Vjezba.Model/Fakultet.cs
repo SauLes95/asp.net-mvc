@@ -104,7 +104,8 @@ namespace Vjezba.Model
 		public IEnumerable<Student> DohvatiStudente91List()
 		{
 			return Osobe.OfType<Student>()
-				.Where(s => s.DatumRodjenja.Year > 1991);
+				.Where(s => s.DatumRodjenja.Year > 1991)
+				.ToList();
 		}
 
 		public Student? NajboljiProsjek(int god)
@@ -157,6 +158,14 @@ namespace Vjezba.Model
 			return Osobe.OfType<Profesor>()
 				.Where(p => p.Zvanje == Zvanje.Asistent)
 				.Where(p => p.Predmeti.Count(pr => pr.ECTS >= minEcts) > x);
+		}
+
+		public void IzmjeniProfesore(Action<Profesor> action)
+		{
+			foreach (Profesor profesor in Osobe.OfType<Profesor>())
+			{
+				action(profesor);
+			}
 		}
 	}
 }
