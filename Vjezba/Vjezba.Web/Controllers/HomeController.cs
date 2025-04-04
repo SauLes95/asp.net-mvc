@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using Vjezba.Web.Models;
 
 namespace Vjezba.Web.Controllers
 {
