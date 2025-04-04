@@ -34,7 +34,6 @@ namespace Vjezba.Web.Controllers
         /// URL ove akcije je /Home/SubmitQuery, uz POST zahtjev isključivo - ne može se napraviti GET zahtjev zbog [HttpPost] parametra
         /// </summary>
         /// <param name="formData"></param>
-        /// <returns></returns>
         [HttpPost]
         public IActionResult SubmitQuery(IFormCollection formData)
         {
