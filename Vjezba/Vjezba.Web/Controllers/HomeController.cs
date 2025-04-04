@@ -39,7 +39,6 @@ namespace Vjezba.Web.Controllers
         public IActionResult SubmitQuery(IFormCollection formData)
         {
             //Ovdje je potrebno obraditi podatke i pospremiti finalni string u ViewBag
-
             
 
             //Kao rezultat se pogled /Views/Home/ContactSuccess.cshtml renderira u "pravi" HTML
@@ -51,7 +50,9 @@ namespace Vjezba.Web.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new { RequestId = "Auditorne" });
+            return View(new { 
+                RequestId = "Auditorne" 
+            });
         }
     }
 }
