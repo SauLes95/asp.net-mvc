@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Contact page";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Podaci koji su proslijeđeni iz controller-a: @ViewData["Message"]</p>
+
+<table>
+    <tr>
+        <th>Broj</th>
+        <th>Kvadrat</th>
+    </tr>
+    @foreach(var i in Enumerable.Range(1,10))
+    {
+        <tr>
+            <td>@i</td>
+            <td>@{
+                    Write($"{i * i}");    
+                }</td>
+        </tr>
+    }
+</table>
