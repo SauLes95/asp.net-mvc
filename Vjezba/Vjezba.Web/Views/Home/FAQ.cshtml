@@ -1,0 +1,16 @@
+﻿@{  
+   ViewData["Title"] = "FAQ";  
+   int? selected = ViewBag.OdabranoPitanje;  
+}  
+
+<h1>@ViewData["Title"]</h1>  
+
+<h3>Pitanja</h3>  
+
+<ul>  
+   <li style="@(selected == 1 ? "font-weight:bold" : "")">Pitanje 1?</li>  
+   <li style="@(selected == 2 ? "font-weight:bold" : "")">Pitanje 2?</li>  
+   <li style="@(selected == 3 ? "font-weight:bold" : "")">Pitanje 3?</li>  
+   <li style="@(selected == 4 ? "font-weight:bold" : "")">Pitanje 4?</li>  
+   <li style="@(selected == 5 ? "font-weight:bold" : "")">Pitanje 5?</li>  
+</ul>

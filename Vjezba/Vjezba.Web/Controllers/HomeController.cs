@@ -29,13 +29,19 @@ namespace Vjezba.Web.Controllers
             return View();
         }
 
-        /// <summary>
-        /// Ova akcija se poziva kada na formi za kontakt kliknemo "Submit"
-        /// URL ove akcije je /Home/SubmitQuery, uz POST zahtjev isključivo - ne može se napraviti GET zahtjev zbog [HttpPost] parametra
-        /// </summary>
-        /// <param name="formData"></param>
-        /// <returns></returns>
-        [HttpPost]
+		public IActionResult FAQ(int? selected = null)
+		{
+            ViewBag.OdabranoPitanje = selected;
+			return View();
+		}
+
+		/// <summary>
+		/// Ova akcija se poziva kada na formi za kontakt kliknemo "Submit"
+		/// URL ove akcije je /Home/SubmitQuery, uz POST zahtjev isključivo - ne može se napraviti GET zahtjev zbog [HttpPost] parametra
+		/// </summary>
+		/// <param name="formData"></param>
+		/// <returns></returns>
+		[HttpPost]
         public IActionResult SubmitQuery(IFormCollection formData)
         {
             //Ovdje je potrebno obraditi podatke i pospremiti finalni string u ViewBag

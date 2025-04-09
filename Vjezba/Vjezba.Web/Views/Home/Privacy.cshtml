@@ -4,3 +4,41 @@
 <h1>@ViewData["Title"]</h1>
 
 <p>Use this page to detail your site's privacy policy.</p>
+
+<h3>Selected FAQ</h3>
+<ul>
+    <li>
+        @Html.ActionLink("Pitanje 1", "FAQ", "Home", routeValues: new { selected = 1 })
+    </li>
+    <li>
+        @Html.ActionLink("Pitanje 2", "FAQ", "Home", routeValues: new { selected = 2 })
+    </li>
+    <li>
+        @Html.ActionLink("Pitanje 3", "FAQ", "Home", routeValues: new { selected = 3 })
+    </li>
+    <li>
+        @Html.ActionLink("Pitanje 4", "FAQ", "Home", routeValues: new { selected = 4 })
+    </li>
+    <li>
+        @Html.ActionLink("Pitanje 5", "FAQ", "Home", routeValues: new { selected = 5 })
+    </li>
+</ul>
+
+<h3>Non-selected FAQ</h3>
+<ul>
+    <li>
+        @Html.ActionLink("Pitanje 1", "FAQ", "Home")
+    </li>
+    <li>
+        @Html.ActionLink("Pitanje 2", "FAQ", "Home")
+    </li>
+    <li>
+        @Html.ActionLink("Pitanje 3", "FAQ", "Home")
+    </li>
+    <li>
+        @Html.ActionLink("Pitanje 4", "FAQ", "FAQ")
+    </li>
+    <li>
+        @Html.ActionLink("Pitanje 5", "FAQ", "FAQ")
+    </li>
+</ul>
