@@ -12,5 +12,11 @@ namespace Vjezba.Web.Controllers
 			ViewBag.Cities = cityList;
 			return View(clientList);
 		}
+
+		public IActionResult Details(int? id)
+		{
+			var model = id != null ? MockClientRepository.Instance.FindByID(id.Value) : null;
+			return View(model);
+		}
 	}
 }

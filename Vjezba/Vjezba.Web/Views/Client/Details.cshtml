@@ -1,0 +1,51 @@
+﻿@using Vjezba.Web.Mock;
+@model Client;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+<h4>Client</h4>
+<hr />
+@if(Model != null){
+
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-sm-3 fw-bold">ID</div>
+            <div class="col-sm-9">@Model.ID</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-3 fw-bold">Ime i prezime</div>
+            <div class="col-sm-9">@Model.FullName</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-3 fw-bold">Email</div>
+            <div class="col-sm-9">@Model.Email</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-3 fw-bold">Spol</div>
+            <div class="col-sm-9">@Model.Gender</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-3 fw-bold">Adresa</div>
+            <div class="col-sm-9">@Model.Address</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-3 fw-bold">Tel.</div>
+            <div class="col-sm-9">@Model.PhoneNumber</div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-sm-3 fw-bold">Grad</div>
+            <div class="col-sm-9">@ViewBag.CityName</div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        Neispravan ID
+    </div>
+}
+
+@Html.ActionLink("Back to list", "Index", "Client")
