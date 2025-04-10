@@ -8,7 +8,8 @@ namespace Vjezba.Web.Controllers
 		public IActionResult Index()
 		{
 			List<Client> clientList = MockClientRepository.Instance.All().ToList();
-
+			List<City> cityList = MockCityRepository.Instance.All().ToList();
+			ViewBag.Cities = cityList;
 			return View(clientList);
 		}
 	}

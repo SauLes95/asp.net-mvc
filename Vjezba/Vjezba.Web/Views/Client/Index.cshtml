@@ -1,11 +1,43 @@
 ﻿@using Vjezba.Web.Mock;
 @model List<Client>;
 
+
 @{
     ViewData["Title"] = "Index";
+    var Cities = ViewBag.Cities;
 }
 
 <h1>Index</h1>
 <div class="alert alert-success">
     U sustavu postoji @Model.Count klijenata.
+</div>
+
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th class="col-3">Client</th>
+                <th class="col-3">Address</th>
+                <th class="col-3">Email</th>
+                <th class="col-3">City</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in Model)
+            {
+                <tr>
+                    <td>@client.FullName</td>
+                    <td>@client.Address</td>
+                    <td>@client.Email</td>
+                    @foreach (var city in Cities)
+                                {
+                        if (client.CityID == city.ID)
+                        {
+                            <td>@city.Name</td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
