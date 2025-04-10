@@ -3,11 +3,19 @@
 
 @{
     ViewData["Title"] = "Details";
+    var city = ViewBag.city;
 }
 
 <h2>Details</h2>
 <h4>Client</h4>
 <hr />
+<nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="..">Popis klijenata</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.FullName</li>
+    </ol>
+</nav>
+
 @if(Model != null){
 
     <div class="container">
@@ -37,7 +45,7 @@
         </div>
         <div class="row mb-2">
             <div class="col-sm-3 fw-bold">Grad</div>
-            <div class="col-sm-9">@ViewBag.CityName</div>
+            <div class="col-sm-9">@city</div>
         </div>
     </div>
 }
@@ -48,4 +56,4 @@ else
     </div>
 }
 
-@Html.ActionLink("Back to list", "Index", "Client")
+@Html.ActionLink("Back to list", "Index", "Client", htmlAttributes: new { @class = "text-primary", @style = "text-decoration:none;" })

@@ -26,7 +26,9 @@
             @foreach (var client in Model)
             {
                 <tr>
-                    <td>@client.FullName</td>
+                    <td>
+                        @Html.ActionLink(@client.FullName, "Details", "Client", routeValues: new { id = client.ID }, htmlAttributes: new { @class = "text-primary", @style = "text-decoration:none;" })
+                    </td>
                     <td>@client.Address</td>
                     <td>@client.Email</td>
                     @foreach (var city in Cities)
