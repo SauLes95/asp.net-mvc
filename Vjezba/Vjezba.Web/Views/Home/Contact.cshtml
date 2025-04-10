@@ -5,44 +5,60 @@
 <h1>@ViewData["Title"]</h1>
 <p>Podaci koji su proslijeđeni iz controller-a: @ViewData["Message"]</p>
 
-<form method="post" action="/Home/SubmitQuery">
-    <div class="container">
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label for="firstName" class="form-label">Ime</label>
-                <input type="text" id="firstName" name="firstName" class="form-control" required />
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal">Kontaktirajte nas!</button>
+
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">Kontaktirajte nas!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="col-md-6">
-                <label for="lastName" class="form-label">Prezime</label>
-                <input type="text" id="lastName" name="lastName" class="form-control" required />
+            <div class="modal-body">
+                <form method="post" action="/Home/SubmitQuery">
+                    <div class="container">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label">Ime</label>
+                                <input type="text" id="firstName" name="firstName" class="form-control" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label">Prezime</label>
+                                <input type="text" id="lastName" name="lastName" class="form-control" required />
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" id="email" name="email" class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Poruka:</label>
+                            <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="messageType" class="form-label">Tip poruke:</label>
+                            <select id="messageType" name="messageType" class="form-select" required>
+                                <option value="pohvala">Pohvala</option>
+                                <option value="upit">Upit</option>
+                                <option value="poslovni prijedlog">Poslovni prijedlog</option>
+                                <option value="zalba">Žalba</option>
+                            </select>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input type="checkbox" id="newsletter" name="newsletter" class="form-check-input" />
+                            <label class="form-check-label" for="newsletter">Želim primati newsletter</label>
+                        </div>
+
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Poništi</button>
+                        <button type="submit" class="btn btn-primary">Pošalji upit!</button>
+                    </div>
+                </form>
+
             </div>
         </div>
-
-        <div class="mb-3">
-            <label for="email" class="form-label">Email:</label>
-            <input type="email" id="email" name="email" class="form-control" required />
-        </div>
-
-        <div class="mb-3">
-            <label for="message" class="form-label">Poruka:</label>
-            <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
-        </div>
-
-        <div class="mb-3">
-            <label for="messageType" class="form-label">Tip poruke:</label>
-            <select id="messageType" name="messageType" class="form-select" required>
-                <option value="pohvala">Pohvala</option>
-                <option value="upit">Upit</option>
-                <option value="poslovni prijedlog">Poslovni prijedlog</option>
-                <option value="zalba">Žalba</option>
-            </select>
-        </div>
-
-        <div class="form-check mb-3">
-            <input type="checkbox" id="newsletter" name="newsletter" class="form-check-input" />
-            <label class="form-check-label" for="newsletter">Želim primati newsletter</label>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Pošalji upit!</button>
     </div>
-</form>
+</div>
