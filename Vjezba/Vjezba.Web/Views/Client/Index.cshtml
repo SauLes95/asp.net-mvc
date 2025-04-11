@@ -12,6 +12,67 @@
     U sustavu postoji @Model.Count klijenata.
 </div>
 
+@* <form method="get" action="@Url.Action("Index", "Client")" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="query" class="form-control" placeholder="Pretraga po imenu">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+<form method="post" action="@Url.Action("Index", "Client")" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="queryName" class="form-control" placeholder="Pretraga po imenu">
+        <input type="text" name="queryAddress" class="form-control" placeholder="Pretraga po adresi">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form> *@
+
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#Pretraga">Pretraga</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#Pretraga2">Pretraga uz adresu</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#Pretraga3">Napredna pretraga</a>
+        </li>
+
+    </ul>
+
+
+
+
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="Pretraga">
+            <form method="GET" action="/Client/Index">
+                <input type="text" name="query" placeholder="Pretraga po imenu">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div class="tab-pane fade" id="Pretraga2">
+            <form method="POST" action="/Client/Index">
+                <input type="text" name="queryName" placeholder="Pretraga po imenu">
+                <input type="text" name="queryAddress" placeholder="Pretraga po adresi">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <div class="tab-pane fade" id="Pretraga3">
+            <form method="POST" action="/Client/AdvancedSearch">
+                <input type="text" name="partQueryName" placeholder="Pretraga po imenu">
+                <input type="text" name="partQueryAddress" placeholder="Pretraga po adresi">
+                <input type="text" name="partQueryEmail" placeholder="Pretraga po e-mailu">
+                <input type="text" name="partQueryCity" placeholder="Pretraga po gradu">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
 <div class="container">
     <table class="table table-bordered table-striped">
         <thead>
