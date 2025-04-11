@@ -1,0 +1,40 @@
+﻿@{
+	ViewData["Title"] = "FAQ";
+	var selectedNumber = (int?)ViewData["selected"];
+}
+<h2>@ViewData["Title"]</h2>
+
+<ul>
+	<li>
+		<div class="@(selectedNumber == 1 ? "bold" : "")">
+			Q: Ako je URL oblika /Test/Cvijet, koji je to Controller i koja akcija?
+		</div>
+		<div>
+			A: TestController, akcija "Cvijet".
+		</div>
+	</li>
+
+	<li>
+		<div class="@(selectedNumber == 2 ? "bold" : "")">
+			Q: Ako je URL oblika /Test/Cvijet?lang=en, kako izgleda parametar akcije ako je parametar opcionalni?
+		</div>
+		<div>
+			A: Cvijet(string lang = null)
+		</div>
+	</li>
+
+	<li>
+		<div class="@(selectedNumber == 3 ? "bold" : "")">
+			Q: Ako je URL oblika /Test/Cvijet?lang=en&f=9, kako izgleda akcija?
+		</div>
+		<div>
+			A: Cvijet(string lang = null, int? f = null)
+		</div>
+	</li>
+</ul>
+
+<style type="text/css">
+	.bold {
+		font-weight: bold;
+	}
+</style>

@@ -1,0 +1,73 @@
+﻿@model Vjezba.Web.Mock.Client
+
+@{
+	ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+@if (Model != null)
+{
+	<ol class="breadcrumb">
+		<li><a asp-action="Index">Popis klijenata</a></li>
+		<li class="active">@Model.FullName</li>
+	</ol>
+
+	<div>
+		<h4>Client</h4>
+		<hr />
+		<dl class="dl-horizontal">
+			<dt>
+				ID
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.ID)
+			</dd>
+			<dt>
+				Ime i prezime
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.FullName)
+			</dd>
+			<dt>
+				Email
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Email)
+			</dd>
+			<dt>
+				Spol
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Gender)
+			</dd>
+			<dt>
+				Adresa
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Address)
+			</dd>
+			<dt>
+				Tel.
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.PhoneNumber)
+			</dd>
+			<dt>
+				Grad
+			</dt>
+			<dd>
+				@Model?.City?.Name
+			</dd>
+		</dl>
+	</div>
+
+}
+else
+{
+	<div class="alert alert-danger">
+		Nije odabran ispravni ID klijenta.
+	</div>
+
+}
+

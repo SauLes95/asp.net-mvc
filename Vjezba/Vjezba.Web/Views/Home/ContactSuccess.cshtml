@@ -1,5 +1,14 @@
 ﻿@{
-    ViewData["Title"] = "Contact page";
+	ViewBag.Title = "Uspješno poslana poruka";
 }
-<h1>@ViewData["Title"]</h1>
 
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="/Home">Home</a></li>
+		<li class="breadcrumb-item"><a href="/Home/Contact">Kontakt</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Poruka poslana</li>
+	</ol>
+</nav>
+
+<h2>@ViewBag.Title.</h2>
+<div class="alert alert-success">@ViewBag.Message</div>

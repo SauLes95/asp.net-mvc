@@ -27,8 +27,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// localhost:18372/Pero/Mirko
-
 MockClientRepository.Instance.Initialize(Path.Combine(app.Environment.WebRootPath, "data"));
 MockCityRepository.Instance.Initialize(Path.Combine(app.Environment.WebRootPath, "data"));
 

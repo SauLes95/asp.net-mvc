@@ -1,22 +1,101 @@
 ﻿@{
     ViewData["Title"] = "Contact page";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Podaci koji su proslijeđeni iz controller-a: @ViewData["Message"]</p>
+<div class="row">
+	<div class="col-md-8">
+		<h2>@ViewBag.Title.</h2>
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#contact-modal">
+			Kontaktirajte nas!
+		</button>
+	</div>
+</div>
 
-<table>
-    <tr>
-        <th>Broj</th>
-        <th>Kvadrat</th>
-    </tr>
-    @foreach(var i in Enumerable.Range(1,10))
-    {
-        <tr>
-            <td>@i</td>
-            <td>@{
-                    Write($"{i * i}");    
-                }</td>
-        </tr>
-    }
-</table>
+<form action="/Home/SubmitQuery" method="post">
+	<!-- Modal -->
+	<div class="modal fade" id="contact-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Kontakt forma</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="ime">Ime</label>
+								<input type="text" class="form-control" placeholder="Unesite ime" name="ime">
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="prezime">Prezime</label>
+								<input type="text" class="form-control" placeholder="Unesite prezime" name="prezime">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email" class="control-label">Email</label>
+						<input type="email" class="form-control" placeholder="Unesite email" name="email">
+					</div>
+					<div class="form-group">
+						<label for="poruka" class="control-label">Poruka</label>
+						<textarea class="form-control" rows="5" name="poruka"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="tip" class="control-label">Tip upita</label>
+						<select name="tip" class="form-control">
+							<option value="Pohvala">Pohvala</option>
+							<option value="Upit">Upit</option>
+							<option value="Poslovni prijedlog">Poslovni prijedlog</option>
+							<option value="Žalba">Žalba</option>
+						</select>
+					</div>
+					<div class="row">
+						<div class="col-sm-8">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" name="newsletter" value="true" />
+									Želim primati newsletter
+								</label>
+								<input type="hidden" name="newsletter" value="false" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Pošalji upit!</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<div class="row" style="margin-top: 20px;">
+	<div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">Adresa sjedišta</div>
+			<div class="panel-body">
+				<address>
+					One Microsoft Way<br />
+					Redmond, WA 98052-6399<br />
+					<abbr title="Phone">P:</abbr>
+					425.555.0100
+				</address>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">Javite nam se!</div>
+			<div class="panel-body">
+				<address>
+					<strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+					<strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+				</address>
+			</div>
+		</div>
+	</div>
+</div>

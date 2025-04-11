@@ -3,8 +3,8 @@
     "Vjezba.Web": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:45221",
+      "launchBrowser": false,
+      "applicationUrl": "https://localhost:7010",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
