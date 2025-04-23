@@ -13,9 +13,21 @@ namespace Vjezba.Web.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Privacy(string lang)
         {
-            return View();
+			var supportedLangs = new Dictionary<string, string>
+	        {
+		        { "en", "This is the privacy policy." },
+		        { "hr", "Ovo je pravilo privatnosti." },
+		        { "de", "Dies ist die Datenschutzerklärung." },
+		        { "zh", "这是隐私政策。" }
+	        };
+
+			if (!supportedLangs.ContainsKey(lang))
+				return NotFound();
+
+			ViewBag.Message = supportedLangs[lang];
+			return View();
         }
 
         public IActionResult FAQ(int? selected = null)
