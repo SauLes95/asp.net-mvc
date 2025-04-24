@@ -1,0 +1,30 @@
+﻿@model Vjezba.Web.Models.ClientFilterModel
+
+<form asp-action="AdvancedSearch" method="post" class="form-inline">
+    @Html.Hidden("tab", 4)
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                @Html.EditorFor(m => m.FullName, new { htmlAttributes = new { @class = "form-control", placeholder = "Pretraga po imenu" } })
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                @Html.EditorFor(m => m.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "Pretraga po adresi" } })
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Pretraga po e-mailu" } })
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                @Html.EditorFor(m => m.City, new { htmlAttributes = new { @class = "form-control", placeholder = "Pretraga po gradu" } })
+            </div>
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary m-t-10">Submit</button>
+        </div>
+    </div>
+</form>

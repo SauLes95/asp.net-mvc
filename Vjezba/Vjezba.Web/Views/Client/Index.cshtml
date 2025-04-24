@@ -16,13 +16,16 @@
 
 	<ul class="nav nav-tabs">
 		<li class="nav-item">
-			<a class="nav-link @(ViewBag.ActiveTab == 1 ? "active" : "")" href="#z-5-5" aria-controls="z-5-5" role="tab" data-bs-toggle="tab">Zadatak 5.5</a>
+			<a class="nav-link @(ViewBag.ActiveTab == 1 ? "active" : "")" href="#z-5-5" aria-controls="z-5-5" role="tab" data-bs-toggle="tab">GET</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link @(ViewBag.ActiveTab == 2 ? "active" : "")" href="#z-5-6" aria-controls="z-5-6" role="tab" data-bs-toggle="tab">Zadatak 5.6</a>
+			<a class="nav-link @(ViewBag.ActiveTab == 2 ? "active" : "")" href="#z-5-6" aria-controls="z-5-6" role="tab" data-bs-toggle="tab">POST</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link @(ViewBag.ActiveTab == 3 ? "active" : "")" href="#z-5-7" aria-controls="z-5-7" role="tab" data-bs-toggle="tab">Zadatak 5.7</a>
+			<a class="nav-link @(ViewBag.ActiveTab == 3 ? "active" : "")" href="#z-5-7" aria-controls="z-5-7" role="tab" data-bs-toggle="tab">BIND</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link @(ViewBag.ActiveTab == 4 ? "active" : "")" href="#z-5-8" aria-controls="z-5-8" role="tab" data-bs-toggle="tab">PARTIAL</a>
 		</li>
 	</ul>
 
@@ -66,6 +69,7 @@
 		<div role="tabpanel" class="tab-pane @(ViewBag.ActiveTab == 3 ? "show active" : "")" id="z-5-7">
 			<h4>Zadatak 5.7 - POST forma, binding na model</h4>
 			<form action="@Url.Action("AdvancedSearch")" method="post" class="form-inline">
+				<input type="hidden" name="tab" value="3" />
 				<div class="row">
 					<div class="col">
 						<div class="form-group">
@@ -93,6 +97,15 @@
 				</div>
 			</form>
 		</div>
+
+		<div role="tabpanel" class="tab-pane @(ViewBag.ActiveTab == 4 ? "show active" : "")"  id="z-5-8">
+			<h4>Zadatak 3.3 - Partial</h4>
+@* 			<section id="filter">
+				@await Html.PartialAsync("_ClientFilter", new ClientFilterModel())
+			</section>
+ *@			<partial name="_ClientFilter" model="new ClientFilterModel()" />
+		</div>
+
 	</div>
 </div>
 

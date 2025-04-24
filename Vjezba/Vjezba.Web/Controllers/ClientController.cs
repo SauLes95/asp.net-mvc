@@ -42,7 +42,7 @@ namespace Vjezba.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult AdvancedSearch(ClientFilterModel filter)
+        public ActionResult AdvancedSearch(ClientFilterModel filter, int tab)
         {
             var clientQuery = MockClientRepository.Instance.All();
 
@@ -60,11 +60,12 @@ namespace Vjezba.Web.Controllers
             if (!string.IsNullOrWhiteSpace(filter.City))
                 clientQuery = clientQuery.Where(p => p.City != null && p.City.Name.ToLower().Contains(filter.City.ToLower()));
 
-            ViewBag.ActiveTab = 3;
+            ViewBag.ActiveTab = tab;
 
             var model = clientQuery.ToList();
             return View("Index", model);
         }
+
 
         public IActionResult Details(int? id = null)
         {
