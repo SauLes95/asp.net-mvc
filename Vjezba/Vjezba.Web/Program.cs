@@ -1,4 +1,4 @@
-using Vjezba.Web.Mock;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,7 +39,7 @@ app.MapControllerRoute(
 
 
 
-MockClientRepository.Instance.Initialize(Path.Combine(app.Environment.WebRootPath, "data"));
-MockCityRepository.Instance.Initialize(Path.Combine(app.Environment.WebRootPath, "data"));
+//MockClientRepository.Instance.Initialize(Path.Combine(app.Environment.WebRootPath, "data"));
+//MockCityRepository.Instance.Initialize(Path.Combine(app.Environment.WebRootPath, "data"));
 
 app.Run();

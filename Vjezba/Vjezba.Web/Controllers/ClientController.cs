@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Vjezba.Web.Mock;
+using Vjezba.Model;
 using Vjezba.Web.Models;
 
 namespace Vjezba.Web.Controllers
@@ -13,71 +13,71 @@ namespace Vjezba.Web.Controllers
     {
         public IActionResult Index(string query = null)
         {
-            var clientQuery = MockClientRepository.Instance.All();
+            //var clientQuery = MockClientRepository.Instance.All();
 
-            if (!string.IsNullOrWhiteSpace(query))
-                clientQuery = clientQuery.Where(p => p.FullName.ToLower().Contains(query));
+            //if (!string.IsNullOrWhiteSpace(query))
+            //    clientQuery = clientQuery.Where(p => p.FullName.ToLower().Contains(query));
 
-            ViewBag.ActiveTab = 1;
+            //ViewBag.ActiveTab = 1;
 
-            return View(clientQuery.ToList());
+            return View(/*clientQuery.ToList()*/);
         }
 
         [HttpPost]
         public ActionResult Index(string queryName, string queryAddress)
         {
-            var clientQuery = MockClientRepository.Instance.All();
+            //var clientQuery = MockClientRepository.Instance.All();
 
             //Primjer iterativnog građenja upita - dodaje se "where clause" samo u slučaju da je parametar doista proslijeđen.
             //To rezultira optimalnijim stablom izraza koje se kvalitetnije potencijalno prevodi u SQL
             if (!string.IsNullOrWhiteSpace(queryName))
-                clientQuery = clientQuery.Where(p => p.FullName.ToLower().Contains(queryName));
+                //clientQuery = clientQuery.Where(p => p.FullName.ToLower().Contains(queryName));
 
             if (!string.IsNullOrWhiteSpace(queryAddress))
-                clientQuery = clientQuery.Where(p => p.Address.ToLower().Contains(queryAddress));
+                //clientQuery = clientQuery.Where(p => p.Address.ToLower().Contains(queryAddress));
 
             ViewBag.ActiveTab = 2;
 
-            var model = clientQuery.ToList();
-            return View(model);
+            //var model = clientQuery.ToList();
+            return View(/*model*/);
         }
 
         [HttpPost]
         public ActionResult AdvancedSearch(ClientFilterModel filter, int tab)
         {
-            var clientQuery = MockClientRepository.Instance.All();
+            //var clientQuery = MockClientRepository.Instance.All();
 
-            //Primjer iterativnog građenja upita - dodaje se "where clause" samo u slučaju da je parametar doista proslijeđen.
-            //To rezultira optimalnijim stablom izraza koje se kvalitetnije potencijalno prevodi u SQL
-            if (!string.IsNullOrWhiteSpace(filter.FullName))
-                clientQuery = clientQuery.Where(p => p.FullName.ToLower().Contains(filter.FullName.ToLower()));
+            ////Primjer iterativnog građenja upita - dodaje se "where clause" samo u slučaju da je parametar doista proslijeđen.
+            ////To rezultira optimalnijim stablom izraza koje se kvalitetnije potencijalno prevodi u SQL
+            //if (!string.IsNullOrWhiteSpace(filter.FullName))
+            //    clientQuery = clientQuery.Where(p => p.FullName.ToLower().Contains(filter.FullName.ToLower()));
 
-            if (!string.IsNullOrWhiteSpace(filter.Address))
-                clientQuery = clientQuery.Where(p => p.Address.ToLower().Contains(filter.Address.ToLower()));
+            //if (!string.IsNullOrWhiteSpace(filter.Address))
+            //    clientQuery = clientQuery.Where(p => p.Address.ToLower().Contains(filter.Address.ToLower()));
 
-            if (!string.IsNullOrWhiteSpace(filter.Email))
-                clientQuery = clientQuery.Where(p => p.Email.ToLower().Contains(filter.Email.ToLower()));
+            //if (!string.IsNullOrWhiteSpace(filter.Email))
+            //    clientQuery = clientQuery.Where(p => p.Email.ToLower().Contains(filter.Email.ToLower()));
 
-            if (!string.IsNullOrWhiteSpace(filter.City))
-                clientQuery = clientQuery.Where(p => p.City != null && p.City.Name.ToLower().Contains(filter.City.ToLower()));
+            //if (!string.IsNullOrWhiteSpace(filter.City))
+            //    clientQuery = clientQuery.Where(p => p.City != null && p.City.Name.ToLower().Contains(filter.City.ToLower()));
 
             ViewBag.ActiveTab = tab;
 
-            var model = clientQuery.ToList();
-            return View("Index", model);
+           /* var model = clientQuery.ToList()*/;
+            return View(/*"Index", model*/);
         }
 
 
         public IActionResult Details(int? id = null)
         {
-            var model = id != null ? MockClientRepository.Instance.FindByID(id.Value) : null;
-            return View(model);
+            //var model = id != null ? MockClientRepository.Instance.FindByID(id.Value) : null;
+            return View(/*model*/);
         }
 
         public IActionResult Create()
         {
-			var cities = MockCityRepository.Instance.All();
-			ViewBag.Cities = cities;
+			//var cities = MockCityRepository.Instance.All();
+			//ViewBag.Cities = cities;
 			return View(new Client());
         }
 
@@ -85,16 +85,16 @@ namespace Vjezba.Web.Controllers
         public IActionResult Create(Client newClient)
         {
 
-			ViewBag.Cities = MockCityRepository.Instance.All();
-			if (string.IsNullOrEmpty(newClient.FirstName) || string.IsNullOrEmpty(newClient.LastName))
-			{
-				return View();
-			}
+			//ViewBag.Cities = MockCityRepository.Instance.All();
+			//if (string.IsNullOrEmpty(newClient.FirstName) || string.IsNullOrEmpty(newClient.LastName))
+			//{
+			//	return View();
+			//}
 
-			newClient.ID = MockClientRepository.Instance.All().Max(p => p.ID) + 1;
-            newClient.City = MockCityRepository.Instance.FindByID(newClient.CityID);
+			//newClient.ID = MockClientRepository.Instance.All().Max(p => p.ID) + 1;
+   //         newClient.City = MockCityRepository.Instance.FindByID(newClient.CityID);
 
-			MockClientRepository.Instance.InsertOrUpdate(newClient);
+			//MockClientRepository.Instance.InsertOrUpdate(newClient);
 
 			TempData["SuccessMessage"] = "Klijent dodan.";
 

@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vjezba.Web", "Vjezba.Web\Vjezba.Web.csproj", "{9543656F-FADA-4C0C-8E99-64BEA88D40EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vjezba.Model", "Vjezba.Model\Vjezba.Model.csproj", "{6297B390-12EF-4FAB-8A88-A967326B3752}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vjezba.DAL", "Vjezba.DAL\Vjezba.DAL.csproj", "{16DF86F7-0F3B-4E39-8615-61621D7AFFFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{9543656F-FADA-4C0C-8E99-64BEA88D40EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9543656F-FADA-4C0C-8E99-64BEA88D40EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9543656F-FADA-4C0C-8E99-64BEA88D40EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6297B390-12EF-4FAB-8A88-A967326B3752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6297B390-12EF-4FAB-8A88-A967326B3752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6297B390-12EF-4FAB-8A88-A967326B3752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6297B390-12EF-4FAB-8A88-A967326B3752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16DF86F7-0F3B-4E39-8615-61621D7AFFFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16DF86F7-0F3B-4E39-8615-61621D7AFFFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16DF86F7-0F3B-4E39-8615-61621D7AFFFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16DF86F7-0F3B-4E39-8615-61621D7AFFFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

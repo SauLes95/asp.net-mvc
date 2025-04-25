@@ -11,4 +11,13 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mock\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vjezba.DAL\Vjezba.DAL.csproj" />
+    <ProjectReference Include="..\Vjezba.Model\Vjezba.Model.csproj" />
+  </ItemGroup>
+	
 </Project>
