@@ -1,0 +1,56 @@
+﻿@model Vjezba.Web.Mock.Client
+
+@{
+    ViewData["Title"] = "Client Form";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/Home">Home</a></li>
+        <li class="breadcrumb-item"><a href="/Client">Popis klijenata</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Unos klijenta</li>
+    </ol>
+</nav>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<h2>Client Form</h2>
+
+@using (Html.BeginForm("Create", "Client", FormMethod.Post, new { @class = "form-inline" }))
+{
+    <div class="form-group mb-3">
+        <label asp-for="FirstName" class="form-label">First Name</label>
+        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="LastName" class="form-label">Last Name</label>
+        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Address" class="form-label">Address</label>
+        @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Email" class="form-label">Email</label>
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="CityID" class="form-label">City</label>
+        @Html.DropDownListFor(c => c.CityID, new SelectList(ViewBag.Cities, "ID", "Name"), new { @class = "form-select" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Client</button>
+}

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Vjezba.Web.Mock;
 using Vjezba.Web.Models;
@@ -72,5 +73,33 @@ namespace Vjezba.Web.Controllers
             var model = id != null ? MockClientRepository.Instance.FindByID(id.Value) : null;
             return View(model);
         }
-    }
+
+        public IActionResult Create()
+        {
+			var cities = MockCityRepository.Instance.All();
+			ViewBag.Cities = cities;
+			return View(new Client());
+        }
+
+        [HttpPost]
+        public IActionResult Create(Client newClient)
+        {
+
+			ViewBag.Cities = MockCityRepository.Instance.All();
+			if (string.IsNullOrEmpty(newClient.FirstName) || string.IsNullOrEmpty(newClient.LastName))
+			{
+				return View();
+			}
+
+			newClient.ID = MockClientRepository.Instance.All().Max(p => p.ID) + 1;
+            newClient.City = MockCityRepository.Instance.FindByID(newClient.CityID);
+
+			MockClientRepository.Instance.InsertOrUpdate(newClient);
+
+			TempData["SuccessMessage"] = "Klijent dodan.";
+
+			return RedirectToAction("Create", "Client");
+		}
+	}
+
 }
