@@ -1,0 +1,32 @@
+﻿@using Vjezba.Web.Models
+
+@model ClientFilterModel
+
+<form action="@Url.Action("AdvancedSearch")" method="post" class="form-inline">
+	<div class="row">
+		<div class="col">
+			<div class="form-group">
+				<input type="text" class="form-control" name="@Html.NameFor(p => p.FullName)" placeholder="Pretraga po imenu">
+			</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				@Html.EditorFor(p => p.Address)
+			</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				@Html.TextBoxFor(p => p.Email, htmlAttributes: new Dictionary<string, object>() { { "class", "form-control" }, { "placeholder", "Pretraga po email adresi" } })
+			</div>
+		</div>
+		<div class="col">
+			<div class="form-group">
+				<input asp-for="City" class="form-control" type="text" placeholder="Pretraga po gradu" />
+			</div>
+		</div>
+		<div class="col">
+			<input type="hidden" name="tab" value="4" />
+			<button type="submit" class="btn btn-default">Submit</button>
+		</div>
+	</div>
+</form>

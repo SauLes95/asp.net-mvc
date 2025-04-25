@@ -1,5 +1,4 @@
-﻿@using Vjezba.Web.Mock
-@model List<Client>
+﻿@model List<Client>
 
 @{
 	ViewData["Title"] = "Home Page";
@@ -16,20 +15,23 @@
 
 	<ul class="nav nav-tabs">
 		<li class="nav-item">
-			<a class="nav-link @(ViewBag.ActiveTab == 1 ? "active" : "")" href="#z-5-5" aria-controls="z-5-5" role="tab" data-bs-toggle="tab">Zadatak 5.5</a>
+			<a class="nav-link @(ViewBag.ActiveTab == 1 ? "active" : "")" href="#z-2-11" aria-controls="z-2-11" role="tab" data-bs-toggle="tab">GET</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link @(ViewBag.ActiveTab == 2 ? "active" : "")" href="#z-5-6" aria-controls="z-5-6" role="tab" data-bs-toggle="tab">Zadatak 5.6</a>
+			<a class="nav-link @(ViewBag.ActiveTab == 2 ? "active" : "")" href="#z-2-12" aria-controls="z-2-12" role="tab" data-bs-toggle="tab">POST</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link @(ViewBag.ActiveTab == 3 ? "active" : "")" href="#z-5-7" aria-controls="z-5-7" role="tab" data-bs-toggle="tab">Zadatak 5.7</a>
+			<a class="nav-link @(ViewBag.ActiveTab == 3 ? "active" : "")" href="#z-2-13" aria-controls="z-2-13" role="tab" data-bs-toggle="tab">Bind</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link @(ViewBag.ActiveTab == 4 ? "active" : "")" href="#z-3-3" aria-controls="z-3-3" role="tab" data-bs-toggle="tab">Partial</a>
 		</li>
 	</ul>
 
 	<!-- Tab panes -->
 	<div class="tab-content">
-		<div role="tabpanel" class="tab-pane @(ViewBag.ActiveTab == 1 ? "show active" : "")" id="z-5-5">
-			<h4>Zadatak 5.5 - GET forma s jednim parametrom</h4>
+		<div role="tabpanel" class="tab-pane @(ViewBag.ActiveTab == 1 ? "show active" : "")" id="z-2-11">
+			<h4>Zadatak 2.11 - GET forma s jednim parametrom</h4>
 			<form action="@Url.Action("Index")" method="get">
 				<div class="row">
 					<div class="col-9">
@@ -43,8 +45,8 @@
 				</div>
 			</form>
 		</div>
-		<div role="tabpanel" class="tab-pane @(ViewBag.ActiveTab == 2 ? "show active" : "")" id="z-5-6">
-			<h4>Zadatak 5.6 - POST forma s dva parametra</h4>
+		<div role="tabpanel" class="tab-pane @(ViewBag.ActiveTab == 2 ? "show active" : "")" id="z-2-12">
+			<h4>Zadatak 2.12 - POST forma s dva parametra</h4>
 			<form action="@Url.Action("Index")" method="post">
 				<div class="row">
 					<div class="col-4">
@@ -63,8 +65,8 @@
 				</div>
 			</form>
 		</div>
-		<div role="tabpanel" class="tab-pane @(ViewBag.ActiveTab == 3 ? "show active" : "")" id="z-5-7">
-			<h4>Zadatak 5.7 - POST forma, binding na model</h4>
+		<div role="tabpanel" class="tab-pane @(ViewBag.ActiveTab == 3 ? "show active" : "")" id="z-2-13">
+			<h4>Zadatak 2.13 - POST forma, binding na model</h4>
 			<form action="@Url.Action("AdvancedSearch")" method="post" class="form-inline">
 				<div class="row">
 					<div class="col">
@@ -93,6 +95,17 @@
 				</div>
 			</form>
 		</div>
+		<div role="tabpanel" class="tab-pane  @(ViewBag.ActiveTab == 4 ? "show active" : "")" id="z-3-3">
+			<h4>Zadatak 3.3 - Partial</h4>
+			@*@await Html.PartialAsync("_ClientFilter", new ClientFilterModel())*@
+			<partial name="_ClientFilter" model="new ClientFilterModel()" />
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<a asp-action="Create" class="btn btn-success float-right">Dodaj novog</a>
 	</div>
 </div>
 

@@ -13,12 +13,14 @@ namespace Vjezba.Web.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Privacy(string lang)
         {
+            ViewData["Message"] = "Your application description page. Language = " + lang;
             return View();
         }
 
-        public IActionResult FAQ(int? selected = null)
+		[Route("cesto-postavljana-pitanja/{selected:int:min(1):max(99)?}")]
+		public IActionResult FAQ(int? selected = null)
         {
             ViewData["selected"] = selected;
 
