@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Vjezba.Model
 {
-    public class Client
+  
+	public class Client
     {
         [Key]
 		public int ID { get; set; }
@@ -27,5 +28,7 @@ namespace Vjezba.Model
 
         public string FullName => $"{FirstName} {LastName}";
 
-    }
+        public virtual ICollection<Meeting> Meetings { get; set; } = new List<Meeting>();
+
+	}
 }
