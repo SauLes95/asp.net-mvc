@@ -47,12 +47,47 @@ namespace Vjezba.DAL.Migrations
                         new
                         {
                             ID = 2,
-                            Name = "Velika Gorica"
+                            Name = "Split"
                         },
                         new
                         {
                             ID = 3,
-                            Name = "Vrbovsko"
+                            Name = "Rijeka"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Name = "Osijek"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Name = "Zadar"
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Name = "Velika Gorica"
+                        },
+                        new
+                        {
+                            ID = 7,
+                            Name = "Pula"
+                        },
+                        new
+                        {
+                            ID = 8,
+                            Name = "Slavonski Brod"
+                        },
+                        new
+                        {
+                            ID = 9,
+                            Name = "Karlovac"
+                        },
+                        new
+                        {
+                            ID = 10,
+                            Name = "Varaždin"
                         });
                 });
 
@@ -65,7 +100,6 @@ namespace Vjezba.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("CityID")
@@ -79,9 +113,8 @@ namespace Vjezba.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1)");
+                    b.Property<int?>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -90,6 +123,9 @@ namespace Vjezba.DAL.Migrations
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("WorkingExperience")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
