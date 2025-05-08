@@ -16,7 +16,7 @@
 	<input asp-for="LastName" class="form-control" />
 	<span asp-validation-for="LastName" class="text-danger"></span>
 </div>
-<div class="form-group mb-3">
+<div class="form-group mb-3" >
 	<label asp-for="Email" class="form-label">Email</label>
 	@Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
 	@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
 
 <div class="form-group mb-3">
 	<label asp-for="WorkingExperience" class="form-label">Work Experience</label>
-	@Html.TextBoxFor(model => model.WorkingExperience, new { @class = "form-control" })
+	@Html.TextBoxFor(model => model.WorkingExperience, new { @class = "form-control", id = "Email" })
 	@Html.ValidationMessageFor(model => model.WorkingExperience, "", new { @class = "text-danger" })
 </div>
 
