@@ -19,10 +19,10 @@
 			<th></th>
 		</tr>
 	</thead>
-	<tbody>
+	<tbody id="tbl-clients">
 		@foreach (var item in Model)
 		{
-			<tr>
+			<tr onmouseover="lessOpacity(this)" onclick="toggleBold(this)">
 				<td>
 					<a asp-action="Details" asp-route-id="@item.ID">@item.FullName</a>
 				</td>
@@ -36,3 +36,28 @@
 		}
 	</tbody>
 </table>
+
+@section Scripts {
+	<script type="text/javascript">
+		function lessOpacity(row) {
+			$("#tbl-clients tr").css("opacity", "0.5"); // reset others
+			$(row).css("opacity", "1");
+		}
+
+		function toggleBold(row) {
+			const $row = $(row);
+			const isBold = $row.hasClass("bold-row");
+			$row.toggleClass("bold-row", !isBold);
+		}
+
+		$(function () {
+			$("#tbl-clients tr").css("opacity", "0.5");
+		});
+	</script>
+
+	<style>
+		.bold-row {
+			font-weight: bold;
+		}
+	</style>
+}
