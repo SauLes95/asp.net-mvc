@@ -13,7 +13,8 @@ namespace Vjezba.Web.Controllers
         {
 			filter ??= new ClientFilterModel();
 
-			var clientQuery = _dbContext.Clients.AsQueryable();
+			var clientQuery = _dbContext.Clients.Include(c => c.City).AsQueryable();
+
 
 			//Primjer iterativnog građenja upita - dodaje se "where clause" samo u slučaju da je parametar doista proslijeđen.
 			//To rezultira optimalnijim stablom izraza koje se kvalitetnije potencijalno prevodi u SQL
@@ -45,17 +46,28 @@ namespace Vjezba.Web.Controllers
 
 		public IActionResult Create()
 		{
-			return View();
+			var cities = _dbContext.Cities.ToList();
+			ViewBag.Cities = cities;
+			return View(new Client());
 		}
 
 		[HttpPost]
-		public IActionResult Create(Client model)
+		public IActionResult Create(Client newClient)
 		{
-			model.CityID = 1;
-			_dbContext.Clients.Add(model);
+
+			ViewBag.Cities = _dbContext.Cities.ToList();
+			if (string.IsNullOrEmpty(newClient.FirstName) || string.IsNullOrEmpty(newClient.LastName))
+			{
+				return View();
+			}
+
+			_dbContext.Clients.Add(newClient);
 			_dbContext.SaveChanges();
 
-			return RedirectToAction(nameof(Index));
+			TempData["SuccessMessage"] = "Klijent dodan.";
+
+			return RedirectToAction("Create", "Client");
 		}
 	}
 }
+
