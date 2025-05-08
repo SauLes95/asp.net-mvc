@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Vjezba.DAL;
 using Vjezba.Model;
@@ -52,8 +53,8 @@ namespace Vjezba.Web.Controllers
 
 		public IActionResult Create()
 		{
-			var cities = _dbContext.Cities.ToList();
-			ViewBag.Cities = cities;
+	
+			FillDropDownValues();
 			return View(new Client());
 		}
 
@@ -61,7 +62,7 @@ namespace Vjezba.Web.Controllers
 		public IActionResult Create(Client newClient)
 		{
 
-			ViewBag.Cities = _dbContext.Cities.ToList();
+			FillDropDownValues();
 
 			if (ModelState.IsValid)
 			{
@@ -87,7 +88,7 @@ namespace Vjezba.Web.Controllers
 				return NotFound();
 			}
 
-			ViewBag.Cities = _dbContext.Cities.ToList();
+			FillDropDownValues();
 			return View(client);
 		}
 
@@ -108,8 +109,27 @@ namespace Vjezba.Web.Controllers
 				return RedirectToAction(nameof(Index));
 			}
 
-			ViewBag.Cities = _dbContext.Cities.ToList();
+			FillDropDownValues();
 			return View(client);
+		}
+
+		private void FillDropDownValues()
+		{
+			var cities = _dbContext.Cities
+				.Select(c => new SelectListItem
+				{
+					Value = c.ID.ToString(),
+					Text = c.Name
+				})
+				.ToList();
+
+			cities.Insert(0, new SelectListItem
+			{
+				Value = "",
+				Text = "Enter City"
+			});
+
+			ViewBag.Cities = cities;
 		}
 	}
 }

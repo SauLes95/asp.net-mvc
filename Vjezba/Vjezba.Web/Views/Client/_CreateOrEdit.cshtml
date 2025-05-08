@@ -41,7 +41,7 @@
 </div>
 <div class="form-group mb-3">
 	<label asp-for="CityID" class="form-label">City</label>
-	@Html.DropDownListFor(c => c.CityID, new SelectList(ViewBag.Cities, "ID", "Name"), new { @class = "form-select" })
+	@Html.DropDownListFor(c => c.CityID, (List<SelectListItem>)ViewBag.Cities, new { @class = "form-select" })
 </div>
 
 <div class="form-group mb-3">
