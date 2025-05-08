@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace Vjezba.Model
 {
-  
+	public enum Gender
+	{
+		Male,
+		Female
+	}
+
 	public class Client
     {
         [Key]
@@ -18,13 +23,13 @@ namespace Vjezba.Model
 		[Required(ErrorMessage = "Unesite ime klijenta.")]
 		public string FirstName { get; set; }
 		[Required(ErrorMessage = "Unesite prezime klijenta.")] public string LastName { get; set; }
-        public string Email { get; set; }
-        public char Gender { get; set; }
-        public string Address { get; set; }
-        public string PhoneNumber { get; set; }
+        public string? Email { get; set; }
+        public Gender? Gender { get; set; }
+        public string? Address { get; set; }
+        public string? PhoneNumber { get; set; }
         [ForeignKey("City")]
-		public int? CityID { get; set; }
-        public City City { get; set; }
+		public int CityID { get; set; }
+        public City? City { get; set; }
 
         public string FullName => $"{FirstName} {LastName}";
 

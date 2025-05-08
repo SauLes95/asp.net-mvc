@@ -36,9 +36,22 @@
     </div>
 
     <div class="form-group mb-3">
+        <label asp-for="Gender" class="form-label">Gender</label><br />
+
+        @Html.RadioButtonFor(model => model.Gender, Gender.Male) Male
+        @Html.RadioButtonFor(model => model.Gender, Gender.Female) Female
+        @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mb-3">
         <label asp-for="Address" class="form-label">Address</label>
         @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="CityID" class="form-label">City</label>
+        @Html.DropDownListFor(c => c.CityID, new SelectList(ViewBag.Cities, "ID", "Name"), new { @class = "form-select" })
     </div>
 
     <div class="form-group mb-3">
@@ -48,8 +61,9 @@
     </div>
 
     <div class="form-group mb-3">
-        <label asp-for="CityID" class="form-label">City</label>
-        @Html.DropDownListFor(c => c.CityID, new SelectList(ViewBag.Cities, "ID", "Name"), new { @class = "form-select" })
+        <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
     </div>
 
     <button type="submit" class="btn btn-primary">Save Client</button>

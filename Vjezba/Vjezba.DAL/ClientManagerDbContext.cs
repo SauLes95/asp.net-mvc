@@ -41,7 +41,7 @@ namespace Vjezba.DAL
 					FirstName = "Rolf",
 					LastName = "Sosa",
 					Email = "rolf.sosa@example.com",
-					Gender = 'M',
+					Gender = Gender.Male,
 					Address = "Ilica 1",
 					PhoneNumber = "0911234567",
 					CityID = 1 

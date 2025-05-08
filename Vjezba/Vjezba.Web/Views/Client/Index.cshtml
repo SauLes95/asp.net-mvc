@@ -115,8 +115,8 @@
 	<thead>
 		<tr>
 			<th>Client</th>
-			<th>Address</th>
 			<th>Email</th>
+			<th>Address</th>
 			<th>City</th>
 		</tr>
 	</thead>
@@ -127,8 +127,8 @@
 				<td>
 					<a asp-action="Details" asp-route-id="@item.ID">@item.FullName</a>
 				</td>
-				<td>@item.Address</td>
 				<td>@item.Email</td>
+				<td>@item.Address</td>
 				<td>@item.City?.Name</td>
 			</tr>
 		}
