@@ -9,10 +9,12 @@
 <div class="form-group">
 	<label class="control-label">Ime</label>
 	<input asp-for="FirstName" class="form-control" />
+	<span asp-validation-for="FirstName" class="text-danger"></span>
 </div>
 <div class="form-group">
 	<label class="control-label">Prezime</label>
 	<input asp-for="LastName" class="form-control" />
+	<span asp-validation-for="LastName" class="text-danger"></span>
 </div>
 <div class="form-group mb-3">
 	<label asp-for="Email" class="form-label">Email</label>

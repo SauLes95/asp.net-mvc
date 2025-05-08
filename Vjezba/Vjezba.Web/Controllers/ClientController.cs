@@ -15,7 +15,13 @@ namespace Vjezba.Web.Controllers
 
 			var clientQuery = _dbContext.Clients.Include(c => c.City).AsQueryable();
 
-
+			if (!ModelState.IsValid)
+			{
+				foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+				{
+					Console.WriteLine(error.ErrorMessage); // ili stavi breakpoint
+				}
+			}
 			//Primjer iterativnog građenja upita - dodaje se "where clause" samo u slučaju da je parametar doista proslijeđen.
 			//To rezultira optimalnijim stablom izraza koje se kvalitetnije potencijalno prevodi u SQL
 			if (!string.IsNullOrWhiteSpace(filter.FullName))
@@ -56,17 +62,17 @@ namespace Vjezba.Web.Controllers
 		{
 
 			ViewBag.Cities = _dbContext.Cities.ToList();
-			if (string.IsNullOrEmpty(newClient.FirstName) || string.IsNullOrEmpty(newClient.LastName))
+
+			if (ModelState.IsValid)
 			{
-				return View();
+				_dbContext.Clients.Add(newClient);
+				_dbContext.SaveChanges();
+				TempData["SuccessMessage"] = "Klijent dodan.";
+
+				return RedirectToAction(nameof(Index));
 			}
-
-			_dbContext.Clients.Add(newClient);
-			_dbContext.SaveChanges();
-
-			TempData["SuccessMessage"] = "Klijent dodan.";
-
-			return RedirectToAction("Create", "Client");
+	
+			return View(newClient);
 		}
 
 		public IActionResult Edit(int id)
@@ -96,7 +102,7 @@ namespace Vjezba.Web.Controllers
 
 			var ok = await this.TryUpdateModelAsync(client);
 
-			if (ok && this.ModelState.IsValid)
+			if (ok)
 			{
 				_dbContext.SaveChanges();
 				return RedirectToAction(nameof(Index));
