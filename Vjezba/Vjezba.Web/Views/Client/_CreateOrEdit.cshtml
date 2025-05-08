@@ -1,0 +1,49 @@
+﻿@model Client
+
+@{
+	var maleId = "gender_male";
+	var femaleId = "gender_female";
+}
+
+
+<div class="form-group">
+	<label class="control-label">Ime</label>
+	<input asp-for="FirstName" class="form-control" />
+</div>
+<div class="form-group">
+	<label class="control-label">Prezime</label>
+	<input asp-for="LastName" class="form-control" />
+</div>
+<div class="form-group mb-3">
+	<label asp-for="Email" class="form-label">Email</label>
+	@Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+	@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+</div>
+
+<div class="form-group">
+	<label class="form-label">Gender</label><br />
+
+	@Html.RadioButtonFor(model => model.Gender, "Male", new { id = maleId })
+	<label for="@maleId">Male</label>
+
+	@Html.RadioButtonFor(model => model.Gender, "Female", new { id = femaleId })
+	<label for="@femaleId">Female</label>
+
+	@Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+</div>
+<div class="form-group mb-3">
+	<label asp-for="CityID" class="form-label">City</label>
+	@Html.DropDownListFor(c => c.CityID, new SelectList(ViewBag.Cities, "ID", "Name"), new { @class = "form-select" })
+</div>
+
+<div class="form-group mb-3">
+	<label asp-for="Address" class="form-label">Address</label>
+	@Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+	@Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+</div>
+
+<div class="form-group mb-3">
+	<label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+	@Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+	@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+</div>

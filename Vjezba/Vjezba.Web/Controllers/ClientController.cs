@@ -68,6 +68,43 @@ namespace Vjezba.Web.Controllers
 
 			return RedirectToAction("Create", "Client");
 		}
+
+		public IActionResult Edit(int id)
+		{
+			var client = _dbContext.Clients
+				.Include(p => p.City)
+				.Where(p => p.ID == id)
+				.FirstOrDefault();
+
+			if (client == null)
+			{
+				return NotFound();
+			}
+
+			ViewBag.Cities = _dbContext.Cities.ToList();
+			return View(client);
+		}
+
+		[HttpPost]
+		[ActionName("Edit")]
+		public async Task <IActionResult> EditPost(int id)
+		{
+			var client = _dbContext.Clients
+				.Include(p => p.City)
+				.Where(p => p.ID == id)
+				.Single();
+
+			var ok = await this.TryUpdateModelAsync(client);
+
+			if (ok && this.ModelState.IsValid)
+			{
+				_dbContext.SaveChanges();
+				return RedirectToAction(nameof(Index));
+			}
+
+			ViewBag.Cities = _dbContext.Cities.ToList();
+			return View(client);
+		}
 	}
 }
 

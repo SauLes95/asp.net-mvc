@@ -1,7 +1,7 @@
 ﻿@model Client
 
 @{
-	ViewData["Title"] = "Dodavanje novog klijenta";
+	ViewData["Title"] = "Editiranje klijenta";
 	var maleId = "gender_male";
 	var femaleId = "gender_female";
 }
@@ -9,20 +9,21 @@
 <nav aria-label="breadcrumb">
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a asp-action="Index">Popis klijenata</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Novi klijent</li>
+		<li class="breadcrumb-item active" aria-current="page">Edit Client: @Model.FullName</li>
 	</ol>
 </nav>
 
 <div class="row">
 	<div class="col-md-4">
-		<form asp-action="Create">
+		<form asp-action="Edit">
+            <input type="hidden" asp-for="ID" />
 
 			<div style="margin-top: 20px; margin-bottom: 10px;">
-				<partial name="_CreateOrEdit" model="new Client()" />
+				<partial name="_CreateOrEdit" />
 			</div>
 
 			<div class="form-group">
-				<input type="submit" value="Create" class="btn btn-outline-success" />
+				<input type="submit" value="Update" class="btn btn-outline-success" />
 			</div>
 		</form>
 	</div>

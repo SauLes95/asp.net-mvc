@@ -30,5 +30,5 @@ public class Client
 
 	public string FullName => $"{FirstName} {LastName}";
 
-	public virtual ICollection<Meeting> Meetings { get; set; }
+	public virtual ICollection<Meeting>? Meetings { get; set; }
 }
