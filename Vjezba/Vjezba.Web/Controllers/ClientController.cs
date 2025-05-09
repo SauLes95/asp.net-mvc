@@ -78,6 +78,9 @@ namespace Vjezba.Web.Controllers
 
 		public IActionResult Edit(int id)
 		{
+
+			var culture = System.Threading.Thread.CurrentThread.CurrentCulture;
+
 			var client = _dbContext.Clients
 				.Include(p => p.City)
 				.Where(p => p.ID == id)

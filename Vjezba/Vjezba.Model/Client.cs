@@ -33,6 +33,7 @@ public class Client
 	[Range(0, 100, ErrorMessage = "Working experience has to be in range from 0 to 100 years.")]
 	public int? WorkingExperience { get; set; }
 
+	public DateTime? DateOfBirth { get; set; }
 	public Gender? Gender{ get; set; }
 
 	public string? Address { get; set; }
