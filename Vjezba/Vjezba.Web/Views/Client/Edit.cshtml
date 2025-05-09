@@ -29,3 +29,45 @@
 	</div>
 </div>
 
+
+@section Scripts {
+    <script>
+        const accessToken = 'pk.eyJ1Ijoic2VzdGFrbGF1cmEiLCJhIjoiY21hZzVqcnhtMGExejJrcjZwdWp2dTAweSJ9.Mw1LonmAAFbjqPHkt8fLLQ';
+        const sessionToken = crypto.randomUUID();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const addressInput = document.getElementById('address');
+            const suggestionsBox = document.getElementById('address-suggestions');
+
+            if (!addressInput) return;
+
+            addressInput.addEventListener('input', function () {
+                const query = addressInput.value;
+                if (query.length < 3) {
+                    suggestionsBox.innerHTML = '';
+                    return;
+                }
+
+                 fetch(`https://api.mapbox.com/search/searchbox/v1/suggest?q=${encodeURIComponent(query)}&access_token=${accessToken}&session_token=${sessionToken}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        suggestionsBox.innerHTML = '';
+                        if (data.suggestions) {
+                            data.suggestions.forEach(s => {
+                                const option = document.createElement('div');
+                                option.textContent = s.name;
+                                option.className = 'list-group-item list-group-item-action';
+                                option.addEventListener('click', () => {
+                                    // ⬇️ ovo je ključno:
+                                    addressInput.value = s.name;
+                                    suggestionsBox.innerHTML = '';
+                                });
+                                suggestionsBox.appendChild(option);
+                            });
+                        }
+                    })
+                    .catch(err => console.error(err));
+            });
+        });
+    </script>
+}
