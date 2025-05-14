@@ -60,6 +60,10 @@
 				@Model?.City?.Name
 			</dd>
 		</dl>
+
+		<div>
+			<a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-primary">Uredi</a>
+		</div>
 	</div>
 
 }
