@@ -23,6 +23,5 @@ namespace Vjezba.DAL
 			modelBuilder.Entity<City>().HasData(new City { ID = 2, Name = "Velika Gorica" });
 			modelBuilder.Entity<City>().HasData(new City { ID = 3, Name = "Vrbovsko" });
 		}
-
 	}
 }
