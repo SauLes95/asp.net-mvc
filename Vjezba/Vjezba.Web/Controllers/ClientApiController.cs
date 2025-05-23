@@ -30,10 +30,7 @@ namespace Vjezba.Web.Controllers
 				.Select(MapFromClient)
 				.FirstOrDefault();
 
-			if (clients == null)
-			{
-				return NotFound();
-			}
+			if (clients == null) return NotFound();
 
 			return Ok(clients);
 		}
@@ -47,10 +44,7 @@ namespace Vjezba.Web.Controllers
 				.Select(MapFromClient)
 				.ToList();
 
-			if (clients == null)
-			{
-				return NotFound();
-			}
+			if (clients == null) return NotFound();
 
 			return Ok(clients);
 		}
@@ -59,10 +53,7 @@ namespace Vjezba.Web.Controllers
 		[HttpPost]
 		public IActionResult Post([FromBody] ClientDTO client)
 		{
-			if (string.IsNullOrEmpty(client.FullName))
-			{
-				return BadRequest();
-			}
+			if (string.IsNullOrEmpty(client.FullName)) return BadRequest();
 
 			var clientDb = new Client
 			{
@@ -85,7 +76,7 @@ namespace Vjezba.Web.Controllers
 		{
 
 			var clientDb = _dbContext.Clients.Find(id);
-			if (clientDb == null) return NotFound(new { Message = "Client not found" });
+			if (clientDb == null) return NotFound();
 
 			if (!string.IsNullOrWhiteSpace(client.FullName))
 			{
@@ -98,6 +89,18 @@ namespace Vjezba.Web.Controllers
 
 			_dbContext.SaveChanges();
 			return Ok(client);
+		}
+
+		[HttpDelete("{id:int}")]
+		public IActionResult Delete(int id)
+		{
+			var clientDb = _dbContext.Clients.Find(id);
+			if (clientDb == null) return NotFound();
+
+			_dbContext.Clients.Remove(clientDb);
+			_dbContext.SaveChanges();
+
+			return Ok();
 		}
 
 
