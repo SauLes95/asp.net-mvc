@@ -33,8 +33,29 @@ namespace Vjezba.Web.Controllers
             var model = clientQuery.ToList();
             return View(model);
         }
+		[HttpPost]
+		public IActionResult IndexAjax([FromForm] ClientFilterModel filter)
+		{
 
-        public IActionResult Details(int? id = null)
+			var clientQuery = _dbContext.Clients.Include(p => p.City).AsQueryable();
+
+			if (!string.IsNullOrWhiteSpace(filter.FullName))
+				clientQuery = clientQuery.Where(p => (p.FirstName + " " + p.LastName).ToLower().Contains(filter.FullName.ToLower()));
+
+			if (!string.IsNullOrWhiteSpace(filter.Address))
+				clientQuery = clientQuery.Where(p => p.Address.ToLower().Contains(filter.Address.ToLower()));
+
+			if (!string.IsNullOrWhiteSpace(filter.Email))
+				clientQuery = clientQuery.Where(p => p.Email.ToLower().Contains(filter.Email.ToLower()));
+
+			if (!string.IsNullOrWhiteSpace(filter.City))
+				clientQuery = clientQuery.Where(p => p.CityID != null && p.City.Name.ToLower().Contains(filter.City.ToLower()));
+
+			var model = clientQuery.ToList();
+			return PartialView("_IndexTable", model);
+		}
+
+		public IActionResult Details(int? id = null)
         {
 			var client = _dbContext.Clients
 				.Include(p => p.City)
