@@ -1,21 +1,67 @@
-﻿@model Vjezba.Model.Client
+﻿@model Vjezba.Model.Client  
 
-@{
-	ViewData["Title"] = "Uređivanje klijenta";
+@{  
+	ViewData["Title"] = "Uređivanje klijenta";  
+}  
+
+<nav aria-label="breadcrumb">  
+	<ol class="breadcrumb">  
+		<li class="breadcrumb-item"><a asp-action="Index">Popis klijenata</a></li>  
+		<li class="breadcrumb-item active" aria-current="page">Uređivanje klijenta</li>  
+	</ol>  
+</nav>  
+
+<div class="row">  
+	<div class="col-md-4">  
+		<form asp-action="Edit">  
+			<input type="hidden" asp-for="ID" />  
+			<partial name="_CreateOrEdit" />  
+		</form>  
+	</div>  
+	<div class="col-md-6">  
+		<label class="control-label">Photo</label>  
+		<form id="clientAttachment" asp-controller="Client" asp-action="UploadAttachment" asp-route-clientId="@Model.ID" enctype="multipart/form-data" class="dropzone">  
+   </form>  
+		<div id="AttachmentList" class="mt-3"></div>
+	</div>  
+
+</div>  
+
+@section Scripts {    
+	<link href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" rel="stylesheet" />    
+	<script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>    
+
+	<script>    
+		var clientId = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.ID.ToString()));
+
+		function getAttachments() {    
+			$.ajax({    
+				url: "/Client/GetAttachments",    
+				data: { clientId: clientId },    
+				success: function (data) {    
+					$("#AttachmentList").html(data);    
+				}    
+			});    
+		}
+
+		$(document).ready(function () {
+			Dropzone.autoDiscover = false;
+
+			if (Dropzone.instances.length > 0) {
+				Dropzone.instances.forEach(dz => dz.destroy());
+			}
+
+			new Dropzone("#clientAttachment", {
+				url: "/Client/UploadAttachment?clientID=" + clientId,
+				acceptedFiles: "image/*, .pdf, .doc, .docx, .txt",
+				success: function (file, response) {
+					console.log(response);
+					getAttachments();
+				}
+			});
+
+			getAttachments();
+		});
+
+	</script>    
 }
-
-<nav aria-label="breadcrumb">
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item"><a asp-action="Index">Popis klijenata</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Uređivanje klijenta</li>
-	</ol>
-</nav>
-
-<div class="row">
-	<div class="col-md-4">
-		<form asp-action="Edit">
-			<input type="hidden" asp-for="ID" />
-			<partial name="_CreateOrEdit" />
-		</form>
-	</div>
-</div>

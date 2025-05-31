@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Vjezba.DAL;
@@ -7,10 +8,18 @@ using Vjezba.Web.Models;
 
 namespace Vjezba.Web.Controllers
 {
-	public class ClientController(
-        ClientManagerDbContext _dbContext) : Controller
+	public class ClientController : Controller
     {
-        public IActionResult Index(ClientFilterModel filter = null)
+		private readonly ClientManagerDbContext _dbContext;
+		private readonly IWebHostEnvironment _webHostEnvironment;
+
+		public ClientController(ClientManagerDbContext dbContext, IWebHostEnvironment webHostEnvironment)
+		{
+			_dbContext = dbContext;
+			_webHostEnvironment = webHostEnvironment;
+		}
+
+		public IActionResult Index(ClientFilterModel filter = null)
         {
 			filter ??= new ClientFilterModel();
 
@@ -91,7 +100,9 @@ namespace Vjezba.Web.Controllers
 		[ActionName(nameof(Edit))]
 		public IActionResult Edit(int id)
 		{
-			var model = _dbContext.Clients.FirstOrDefault(c => c.ID == id);
+			var model = _dbContext.Clients
+				.Include(c => c.Attachments)
+				.FirstOrDefault(c => c.ID == id);
 			this.FillDropdownValues();
 			return View(model);
 		}
@@ -100,7 +111,9 @@ namespace Vjezba.Web.Controllers
 		[ActionName(nameof(Edit))]
 		public async Task<IActionResult> EditPost(int id)
 		{
-			var client = _dbContext.Clients.Single(c => c.ID == id);
+			var client = _dbContext.Clients
+				.Include(c => c.Attachments)
+				.Single(c => c.ID == id);
 			var ok = await this.TryUpdateModelAsync(client);
 
 			if (ok && this.ModelState.IsValid)
@@ -131,5 +144,72 @@ namespace Vjezba.Web.Controllers
 
 			ViewBag.PossibleCities = selectItems;
 		}
+
+		[HttpPost]
+		public async Task<IActionResult> UploadAttachment(int clientID, IFormFile file)
+		{
+			if (file != null && file.Length > 0)
+			{
+				// Osiguraj da folder postoji
+				var folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "Attachments");
+				if (!Directory.Exists(folderPath))
+					Directory.CreateDirectory(folderPath);
+
+				var attachmentPath = Path.Combine(folderPath, file.FileName);
+
+				using (var stream = new FileStream(attachmentPath, FileMode.Create))
+				{
+					await file.CopyToAsync(stream);
+				}
+
+				var client = _dbContext.Clients.SingleOrDefault(c => c.ID == clientID);
+				if (client == null)
+					return NotFound();
+
+				var attachment = new Attachment
+				{
+					ClientID = clientID,
+					FileName = file.FileName,
+					FilePath = "/Attachments/" + file.FileName, // bitno: bez "wwwroot"
+					Client = client
+				};
+
+				_dbContext.Attachments.Add(attachment);
+				await _dbContext.SaveChangesAsync();
+
+				// Dropzone očekuje JSON, ne redirect
+				return Ok(new { success = true, fileName = file.FileName });
+			}
+
+			return BadRequest(new { error = "File is missing or empty." });
+		}
+
+		public IActionResult GetAttachments(int clientID)
+		{
+			var attachments = _dbContext.Attachments
+				.Where(a => a.ClientID == clientID)
+				.ToList();
+			return PartialView("_AttachmentList", attachments);
+		}
+
+
+		public IActionResult DeleteAttachment(int attachmentID, int clientID)
+		{
+			var attachment = _dbContext.Attachments.Find(attachmentID);
+			if (attachment != null)
+			{
+				var attachmentPath = Path.Combine(_webHostEnvironment.WebRootPath, "Attachments", attachment.FileName);
+				if (System.IO.File.Exists(attachmentPath))
+				{
+					System.IO.File.Delete(attachmentPath);
+				}
+
+				_dbContext.Attachments.Remove(attachment);
+				_dbContext.SaveChanges();
+			}
+
+			return RedirectToAction(nameof(Details), new { id = clientID });
+		}
+
 	}
 }

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Vjezba.Model.Attachment>
+
+<ul class="list-group">
+    @foreach (var attachment in Model)
+    {
+        <li class="list-group-item">
+            <div class="row flex-nowrap">
+                @if (attachment.FilePath.EndsWith(".jpg") || attachment.FilePath.EndsWith(".png") || attachment.FilePath.EndsWith(".jpeg"))
+                {
+                    <img src="@Url.Content("~/Attachments/" + attachment.FileName)" alt="@attachment.FileName" style="max-width: 100px; max-height: 100px;" / class="col m-0">
+                    <p class="col m-0">@attachment.FileName</p>
+                }
+                else
+                {
+                    <p class="col m-0">@attachment.FileName</p>
+                }
+                <div class="col-auto">
+                   <button type="button" onClick="deleteAttachment(@attachment.ID)" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
+
+
+
+
+
+<script type="text/javascript">
+    function deleteAttachment(id, clientId) {
+
+        if (confirm('Are you sure you want to delete this file?')) {
+            $.ajax({
+
+                url: '/Client/DeleteAttachment',
+
+                data: { attachmentID: id, clientID: clientId },
+
+                success: function () {
+                    getAttachments();
+                }
+            });
+        }
+    }
+</script>
